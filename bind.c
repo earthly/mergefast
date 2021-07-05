@@ -6,6 +6,24 @@ PyMethodDef merge_funcs[] = { {
 								  METH_VARARGS,
 								  "merge two sorted lists" /* function docs */
 							  },
+							  {
+								  "merge_latin", /* function name */
+								  (PyCFunction)merge,
+								  METH_VARARGS,
+								  "merge two sorted lists of latin strings" /* function docs */
+							  },
+							  {
+								  "merge_int", /* function name */
+								  (PyCFunction)merge,
+								  METH_VARARGS,
+								  "merge two sorted lists of integers" /* function docs */
+							  },
+							  {
+								  "merge_float", /* function name */
+								  (PyCFunction)merge,
+								  METH_VARARGS,
+								  "merge two sorted lists of floats" /* function docs */
+							  },
 							  { NULL } };
 
 char helloworldmod_docs[] = "This is hello world module.";

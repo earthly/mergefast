@@ -11,7 +11,7 @@ build:
 test:
     FROM +build
     COPY test.py .
-    RUN python3 test.py
+    RUN --no-cache python3 test.py
 
 reformat-c:
     FROM alpine:3.13
