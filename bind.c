@@ -8,19 +8,19 @@ PyMethodDef merge_funcs[] = { {
 							  },
 							  {
 								  "merge_latin", /* function name */
-								  (PyCFunction)merge,
+								  (PyCFunction)merge_latin,
 								  METH_VARARGS,
 								  "merge two sorted lists of latin strings" /* function docs */
 							  },
 							  {
 								  "merge_int", /* function name */
-								  (PyCFunction)merge,
+								  (PyCFunction)merge_int,
 								  METH_VARARGS,
 								  "merge two sorted lists of integers" /* function docs */
 							  },
 							  {
 								  "merge_float", /* function name */
-								  (PyCFunction)merge,
+								  (PyCFunction)merge_float,
 								  METH_VARARGS,
 								  "merge two sorted lists of floats" /* function docs */
 							  },

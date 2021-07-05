@@ -1,7 +1,7 @@
 import merge
 import timeit
 
-a = list(range(-1, 1700))
+a = list(range(-100, 1700))
 b = list(range(1400, 1800))
 
 # a = ["aa","bb","cc","za"]

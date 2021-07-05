@@ -4,14 +4,14 @@
 #include "merge.h"
 
 /* Heterogeneous compare: default, always safe to fall back on. */
-static inline int safe_object_compare(PyObject *v, PyObject *w)
+static inline int object_compare(PyObject *v, PyObject *w)
 {
     /* No assumptions necessary! */
     return PyObject_RichCompareBool(v, w, Py_LT);
 }
 
 /* Float compare: compare any two floats. */
-static inline int unsafe_float_compare( PyObject* v, PyObject* w )
+static inline int float_compare( PyObject* v, PyObject* w )
 {
 	int res;
 
@@ -25,7 +25,7 @@ static inline int unsafe_float_compare( PyObject* v, PyObject* w )
 }
 
 /* Bounded int compare: compare any two longs that fit in a single machine word. */
-static inline int unsafe_long_compare( PyObject* v, PyObject* w )
+static inline int long_compare( PyObject* v, PyObject* w )
 {
 	PyLongObject *vl, *wl;
 	sdigit v0, w0;
@@ -53,7 +53,7 @@ static inline int unsafe_long_compare( PyObject* v, PyObject* w )
 	return res;
 }
 /* Latin string compare: safe for any two latin (one byte per char) strings. */
-static inline int unsafe_latin_compare( PyObject* v, PyObject* w )
+static inline int latin_compare( PyObject* v, PyObject* w )
 {
 	Py_ssize_t len;
 	int res;
@@ -157,20 +157,20 @@ merge_internal( PyObject* self, PyObject* args, int ( *compare_ptr )( PyObject*,
 
 PyObject* merge( PyObject* self, PyObject* args )
 {
-	return merge_internal( self, args, safe_object_compare );
+	return merge_internal( self, args, object_compare );
 }
 
 PyObject* merge_latin( PyObject* self, PyObject* args )
 {
-	return merge_internal( self, args, unsafe_latin_compare );
+	return merge_internal( self, args, latin_compare );
 }
 
 PyObject* merge_int( PyObject* self, PyObject* args )
 {
-	return merge_internal( self, args, unsafe_long_compare );
+	return merge_internal( self, args, long_compare );
 }
 
 PyObject* merge_float( PyObject* self, PyObject* args )
 {
-	return merge_internal( self, args, unsafe_float_compare );
+	return merge_internal( self, args, float_compare );
 }
