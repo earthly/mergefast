@@ -1,6 +1,7 @@
 deps:
-    FROM alpine:3.13
-    RUN apk add python3 python3-dev musl-dev gcc
+    FROM python:3.6-alpine
+    RUN apk add g++ python3-dev musl-dev gcc jpeg-dev zlib-dev libjpeg make
+    RUN pip3 install matplotlib
 
 build:
     FROM +deps
@@ -12,6 +13,12 @@ test:
     FROM +build
     COPY test.py .
     RUN --no-cache python3 test.py
+
+perf:
+    FROM +build
+    COPY perf.py .
+    RUN --no-cache python3 perf.py
+    SAVE ARTIFACT perf.png AS LOCAL perf.png
 
 reformat-c:
     FROM alpine:3.13
