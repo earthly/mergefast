@@ -1,6 +1,17 @@
 # Py Merge
 
-Merge sorted list faster than using `sort` or . 
+Merge sorted list faster than using `list.sort` or `heapq.merge`.
+
+``` Python
+import merge
+
+# create some sorted lists
+a = list(range(-100, 1700))
+b = list(range(1400, 1800))
+
+# merge them
+merged = merge.merge(a, b)
+```
 
 See [article](https://earthly.dev/blog/python-timsort-merge)
 
