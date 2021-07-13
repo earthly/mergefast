@@ -1,6 +1,6 @@
 deps:
-    FROM python:3.6-alpine
-    RUN apk add g++ python3-dev musl-dev gcc jpeg-dev zlib-dev libjpeg make
+    FROM ubuntu:20.10
+    RUN apt-get update && apt-get install -y python3 python3-pip
     RUN pip3 install matplotlib
 
 build:
