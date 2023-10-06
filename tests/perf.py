@@ -2,13 +2,13 @@ from timeit import timeit
 import random
 import matplotlib.pyplot as plt
 import textwrap
-import merge
+import pymerge
 
 def merge_latin(a,b):
-   m1 = merge.merge_latin(a, b)
+   m1 = pymerge.merge_latin(a, b)
 
 def merge_simple(a,b):
-   m1 = merge.merge(a, b)
+   m1 = pymerge.merge(a, b)
 
 def sort(a,b):
    m2 = a + b 
