@@ -16,6 +16,11 @@ test:
     RUN poetry install
     RUN poetry run python tests/test.py 
 
+test-from-pip:
+    FROM python:3.11-buster
+    RUN pip install mergefast
+    RUN python -c 'import mergefast'
+
 perf:
     FROM +build
     RUN poetry install
