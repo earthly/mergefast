@@ -2,14 +2,14 @@
 
 from setuptools import setup, Extension
 
-pymerge_module = Extension(
-    "pymerge.pymerge",
-    sources=["pymerge/bind.c", "pymerge/merge.c"],
+merge_module = Extension(
+    "mergefast.mergefast",
+    sources=["mergefast/bind.c", "mergefast/merge.c"],
     extra_compile_args=["-O3"]
 )
 
 setup(
-    name="pymerge",
+    name="mergefast",
     version="1.1",
-    ext_modules=[pymerge_module],
+    ext_modules=[merge_module],
 )

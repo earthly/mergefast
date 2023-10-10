@@ -2,13 +2,13 @@ from timeit import timeit
 import random
 import matplotlib.pyplot as plt
 import textwrap
-import pymerge
+import mergefast
 
 def merge_latin(a,b):
-   m1 = pymerge.merge_latin(a, b)
+   m1 = mergefast.merge_latin(a, b)
 
 def merge_simple(a,b):
-   m1 = pymerge.merge(a, b)
+   m1 = mergefast.merge(a, b)
 
 def sort(a,b):
    m2 = a + b 
@@ -23,8 +23,8 @@ methods = [
 ]
 labels = [
     "list(a+b).sort()",
-    "merge.merge(a,b) #general",
-    "merge.merge_latin(a,b) #specialized"
+    "mergefast.merge(a,b) #general",
+    "mergefast.merge_latin(a,b) #specialized"
 ]
 
 x = list(range(0, num_data_points * step, step))

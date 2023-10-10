@@ -2,3 +2,6 @@ build
 *.so
 perf.png
 dist
+__pycache__/
+*.pyc
+*.pyo

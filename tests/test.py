@@ -1,14 +1,14 @@
-import pymerge
+import mergefast
 import timeit
 
 a = list(range(-100, 1700)) + [0.1]
 b = list(range(1400, 1800))
 
 def merge_int_test():
-   m1 = pymerge.merge_int(a, b)
+   m1 = mergefast.merge_int(a, b)
 
 def merge_test():
-   m1 = pymerge.merge(a, b)
+   m1 = mergefast.merge(a, b)
 
 def sort_test():
    m2 = list(a + b)

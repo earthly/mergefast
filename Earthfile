@@ -7,7 +7,7 @@ deps:
 build:
     FROM +deps
     WORKDIR /code
-    COPY --dir pymerge tests .
+    COPY --dir mergefast tests .
     COPY build.py poetry.lock pyproject.toml README.md .
     RUN python3 build.py build_ext --inplace
 
@@ -26,9 +26,9 @@ reformat-c:
     FROM alpine:3.13
     RUN apk add clang
     WORKDIR /code
-    COPY pymerge/.clang-format .
-    COPY pymerge/*.h pymerge/*.c .
+    COPY merge-fast/.clang-format .
+    COPY merge-fast/*.h merge-fast/*.c .
     RUN which clang-format # test that clang-format exists, since find won't bubble up exec errors
     RUN find -regex '.*.\(c\|h\)$' -exec clang-format -i {} \;
-    SAVE ARTIFACT *.h AS LOCAL ./pymerge/
-    SAVE ARTIFACT *.c AS LOCAL ./pymerge/
+    SAVE ARTIFACT *.h AS LOCAL ./merge_fast/
+    SAVE ARTIFACT *.c AS LOCAL ./merge_fast/
