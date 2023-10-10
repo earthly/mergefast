@@ -1,34 +1,34 @@
 VERSION 0.7
 
 deps:
-    FROM ubuntu:20.04
-    RUN apt-get update && apt-get install -y python3 python3-pip
-    RUN pip3 install matplotlib
+    FROM python:3.11-buster
+    RUN pip install poetry
 
 build:
     FROM +deps
     WORKDIR /code
-    COPY setup.py merge.h merge.c bind.c .
-    RUN python3 setup.py build_ext --inplace
+    COPY --dir pymerge tests .
+    COPY build.py poetry.lock pyproject.toml README.md .
+    RUN python3 build.py build_ext --inplace
 
 test:
     FROM +build
-    COPY test.py .
-    RUN --no-cache python3 test.py
+    RUN poetry install
+    RUN poetry run python tests/test.py 
 
 perf:
     FROM +build
-    COPY perf.py .
-    RUN --no-cache python3 perf.py
+    RUN poetry install
+    RUN poetry run python tests/perf.py 
     SAVE ARTIFACT perf.png AS LOCAL perf.png
 
 reformat-c:
     FROM alpine:3.13
     RUN apk add clang
     WORKDIR /code
-    COPY .clang-format .
-    COPY *.h *.c .
+    COPY pymerge/.clang-format .
+    COPY pymerge/*.h pymerge/*.c .
     RUN which clang-format # test that clang-format exists, since find won't bubble up exec errors
     RUN find -regex '.*.\(c\|h\)$' -exec clang-format -i {} \;
-    SAVE ARTIFACT *.h AS LOCAL ./
-    SAVE ARTIFACT *.c AS LOCAL ./
+    SAVE ARTIFACT *.h AS LOCAL ./pymerge/
+    SAVE ARTIFACT *.c AS LOCAL ./pymerge/
