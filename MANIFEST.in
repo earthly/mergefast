@@ -1,0 +1,2 @@
+include mergefast/*.c
+include mergefast/*.h

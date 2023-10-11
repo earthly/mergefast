@@ -27,16 +27,17 @@ PyMethodDef merge_funcs[] = { {
 							  { NULL } };
 
 PyModuleDef merge_mod = { PyModuleDef_HEAD_INIT,
-						  "merge-fast", /* library name */
-						  "merge-fast module", /* module docs */
-						  -1,
-						  merge_funcs,
-						  NULL,
-						  NULL,
-						  NULL,
-						  NULL };
+                          "core", /* library name */
+                          "core module", /* module docs */
+                          -1,
+                          merge_funcs,
+                          NULL,
+                          NULL,
+                          NULL,
+                          NULL };
 
-PyMODINIT_FUNC PyInit_mergefast( void )
+
+PyMODINIT_FUNC PyInit_core(void)
 {
-	return PyModule_Create( &merge_mod );
+    return PyModule_Create(&merge_mod);
 }

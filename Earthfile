@@ -8,8 +8,8 @@ build:
     FROM +deps
     WORKDIR /code
     COPY --dir mergefast tests .
-    COPY build.py poetry.lock pyproject.toml README.md .
-    RUN python3 build.py build_ext --inplace
+    COPY setup.py poetry.lock pyproject.toml README.md .
+    RUN python3 setup.py build_ext --inplace
 
 test:
     FROM +build
