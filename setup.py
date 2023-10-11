@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from setuptools import setup, Extension
+from setuptools import setup, Extension, find_packages
 
 merge_module = Extension(
     "mergefast.core",
@@ -12,5 +12,6 @@ merge_module = Extension(
 setup(
     name="mergefast",
     version="1.1.2",
+    packages=find_packages(),
     ext_modules=[merge_module],
 )
