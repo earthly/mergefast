@@ -11,7 +11,7 @@ merge_module = Extension(
 
 setup(
     name="mergefast",
-    version="1.1.2",
+    version="1.1.3",
     packages=find_packages(),
     ext_modules=[merge_module],
 )

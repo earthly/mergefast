@@ -27,6 +27,7 @@ build:
 test-direct:
     FROM +build
     RUN poetry install
+    RUN python setup.py build_ext --inplace
     RUN poetry run python tests/test.py 
 
 test-dist-install:
@@ -37,7 +38,6 @@ test-dist-install:
     COPY tests .
     RUN python test.py
 
-# Hopefully will work once we publish fixed version to pypi
 test-pypi-install:
     FROM python:3.11-buster
     RUN pip install "mergefast"
