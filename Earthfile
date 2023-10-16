@@ -23,14 +23,14 @@ build:
     # doesn't produce a sdist that works
     # RUN poetry install
     # RUN poetry build
+
+    # Need in-place build so there is a .so file to import
+    RUN python setup.py build_ext --inplace
     SAVE ARTIFACT ./dist AS LOCAL .
 
-# Not working
 test-direct:
     FROM +build
     RUN poetry install
-    # Need in-place build so there is a .so file to import
-    RUN python setup.py build_ext --inplace
     RUN poetry run python tests/test.py 
 
 test-dist-install:
@@ -41,13 +41,17 @@ test-dist-install:
     COPY tests .
     RUN python test.py
 
+publish:
+    FROM +build
+    RUN poetry publish -n
+
 test-pypi-install:
     FROM python:3.11-buster
     RUN pip install "mergefast"
     COPY tests .
     RUN python test.py
 
-perf:
+perf-direct:
     FROM +build
     RUN poetry install
     RUN poetry run python tests/perf.py 
