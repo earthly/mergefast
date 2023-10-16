@@ -1,9 +1,15 @@
 VERSION 0.7
 
+clean:
+   LOCALLY
+    RUN rm -rf build dist *.egg-info 
+    RUN rm ./mergefast/*.so
+
 deps:
     FROM python:3.11-buster
     RUN pip install poetry
 
+# wrong
 build:
     FROM +deps
     WORKDIR /code
@@ -16,6 +22,7 @@ test:
     RUN poetry install
     RUN poetry run python tests/test.py 
 
+#wrong?
 test-from-pip:
     FROM python:3.11-buster
     RUN pip install mergefast
