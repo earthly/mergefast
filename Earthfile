@@ -14,9 +14,16 @@ build:
     WORKDIR /code
     COPY --dir mergefast tests .
     COPY setup.py poetry.lock pyproject.toml README.md MANIFEST.in .
+
+    # works, but not using poetry
     RUN python3 setup.py sdist
+
+    # doesn't produce a sdist that works
+    # RUN poetry install
+    # RUN poetry build
     SAVE ARTIFACT ./dist AS LOCAL .
 
+# Not working
 test-direct:
     FROM +build
     RUN poetry install
@@ -30,6 +37,7 @@ test-dist-install:
     COPY tests .
     RUN python test.py
 
+# Hopefully will work once we publish fixed version to pypi
 test-pypi-install:
     FROM python:3.11-buster
     RUN pip install "mergefast"
