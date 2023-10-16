@@ -15,8 +15,10 @@ build:
     COPY --dir mergefast tests .
     COPY setup.py poetry.lock pyproject.toml README.md MANIFEST.in .
 
-    # works, but not using poetry
+    # works, but not using poetry directly, --inplace is needed for that
     RUN python3 setup.py sdist
+    # this is not useful, because need to use a manylinux image to make a wheel that works on pypi
+    # RUN python setup.py bdist_wheel
 
     # doesn't produce a sdist that works
     # RUN poetry install
@@ -27,6 +29,7 @@ build:
 test-direct:
     FROM +build
     RUN poetry install
+    # Need in-place build so there is a .so file to import
     RUN python setup.py build_ext --inplace
     RUN poetry run python tests/test.py 
 
