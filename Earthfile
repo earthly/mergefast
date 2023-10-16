@@ -31,9 +31,9 @@ reformat-c:
     FROM alpine:3.13
     RUN apk add clang
     WORKDIR /code
-    COPY merge-fast/.clang-format .
-    COPY merge-fast/*.h merge-fast/*.c .
+    COPY mergefast/.clang-format .
+    COPY mergefast/*.h mergefast/*.c .
     RUN which clang-format # test that clang-format exists, since find won't bubble up exec errors
     RUN find -regex '.*.\(c\|h\)$' -exec clang-format -i {} \;
-    SAVE ARTIFACT *.h AS LOCAL ./merge_fast/
-    SAVE ARTIFACT *.c AS LOCAL ./merge_fast/
+    SAVE ARTIFACT *.h AS LOCAL ./mergefast/
+    SAVE ARTIFACT *.c AS LOCAL ./mergefast/
