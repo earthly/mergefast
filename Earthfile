@@ -3,30 +3,38 @@ VERSION 0.7
 clean:
    LOCALLY
     RUN rm -rf build dist *.egg-info 
-    RUN rm ./mergefast/*.so
+    RUN rm ./mergefast/*.so || true
 
 deps:
     FROM python:3.11-buster
     RUN pip install poetry
 
-# wrong
 build:
     FROM +deps
     WORKDIR /code
     COPY --dir mergefast tests .
-    COPY setup.py poetry.lock pyproject.toml README.md .
-    RUN python3 setup.py build_ext --inplace
+    COPY setup.py poetry.lock pyproject.toml README.md MANIFEST.in .
+    RUN python3 setup.py sdist
+    SAVE ARTIFACT ./dist AS LOCAL .
 
-test:
+test-direct:
     FROM +build
     RUN poetry install
     RUN poetry run python tests/test.py 
 
-#wrong?
-test-from-pip:
+test-dist-install:
     FROM python:3.11-buster
-    RUN pip install mergefast
-    RUN python -c 'import mergefast'
+    COPY +build/dist dist
+    ENV TARFILE=$(ls ./dist/*.tar.gz)
+    RUN pip install "$TARFILE"
+    COPY tests .
+    RUN python test.py
+
+test-pypi-install:
+    FROM python:3.11-buster
+    RUN pip install "mergefast"
+    COPY tests .
+    RUN python test.py
 
 perf:
     FROM +build
