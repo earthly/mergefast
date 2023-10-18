@@ -1,4 +1,4 @@
-# Py Merge
+# Merge Fast
 
 Merge sorted list faster than using `list.sort` or `heapq.merge`.
 
