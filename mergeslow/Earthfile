@@ -1,9 +1,14 @@
 VERSION 0.7
 
+# Todo:
+# - +publish uses staging pypi
+# - twine upload steps
+# - poetry upload steps
+
 clean:
    LOCALLY
     RUN rm -rf build dist *.egg-info 
-    RUN rm ./mergefast/*.so || true
+    RUN rm ./mergeslow/*.so || true
 
 deps:
     FROM python:3.11-buster
@@ -12,7 +17,7 @@ deps:
 build:
     FROM +deps
     WORKDIR /code
-    COPY --dir merge tests .
+    COPY --dir mergeslow tests .
     COPY setup.py poetry.lock pyproject.toml README.md  .
 
     # Two ways to build
@@ -40,27 +45,10 @@ test-dist-install:
 
 publish:
     FROM +build
-    RUN poetry publish -n
+    RUN poetry publish --repository testpypi -n
 
 test-pypi-install:
     FROM python:3.11-buster
-    RUN pip install "mergefast"
+    RUN pip install "mergeslow"
     COPY tests .
     RUN python test.py
-
-perf-direct:
-    FROM +build
-    RUN poetry install
-    RUN poetry run python tests/perf.py 
-    SAVE ARTIFACT perf.png AS LOCAL perf.png
-
-reformat-c:
-    FROM alpine:3.13
-    RUN apk add clang
-    WORKDIR /code
-    COPY mergefast/.clang-format .
-    COPY mergefast/*.h mergefast/*.c .
-    RUN which clang-format # test that clang-format exists, since find won't bubble up exec errors
-    RUN find -regex '.*.\(c\|h\)$' -exec clang-format -i {} \;
-    SAVE ARTIFACT *.h AS LOCAL ./mergefast/
-    SAVE ARTIFACT *.c AS LOCAL ./mergefast/
