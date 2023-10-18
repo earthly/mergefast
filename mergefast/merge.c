@@ -4,10 +4,10 @@
 #include "merge.h"
 
 /* Heterogeneous compare: default, always safe to fall back on. */
-static inline int object_compare(PyObject *v, PyObject *w)
+static inline int object_compare( PyObject* v, PyObject* w )
 {
-    /* No assumptions necessary! */
-    return PyObject_RichCompareBool(v, w, Py_LT);
+	/* No assumptions necessary! */
+	return PyObject_RichCompareBool( v, w, Py_LT );
 }
 
 /* Float compare: compare any two floats. */

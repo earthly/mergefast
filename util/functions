@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+source-dist(){
+    python setup.py sdist
+}
+
+pip-source(){
+    pip install ./dist/mergefast-1.1.2.tar.gz
+}

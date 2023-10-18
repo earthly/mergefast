@@ -1,10 +1,17 @@
 #!/usr/bin/env python3
 
-from distutils.core import setup, Extension
+from setuptools import setup, Extension, find_packages
+
+merge_module = Extension(
+    "mergefast.core",
+    sources=["mergefast/bind.c", "mergefast/merge.c"],
+    include_dirs=["mergefast"],
+    extra_compile_args=["-O3"]
+)
 
 setup(
-    name = "merge",
-    version = "1.0",
-    ext_modules = [Extension("merge", ["bind.c", "merge.c"])],
-    extra_compile_args = ["-O3"],
-    );
+    name="mergefast",
+    version="1.1.3",
+    packages=find_packages(),
+    ext_modules=[merge_module],
+)

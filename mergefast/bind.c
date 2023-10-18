@@ -26,11 +26,9 @@ PyMethodDef merge_funcs[] = { {
 							  },
 							  { NULL } };
 
-char helloworldmod_docs[] = "This is hello world module.";
-
 PyModuleDef merge_mod = { PyModuleDef_HEAD_INIT,
-						  "merge", /* library name */
-						  "merge module", /* module docs */
+						  "core", /* library name */
+						  "core module", /* module docs */
 						  -1,
 						  merge_funcs,
 						  NULL,
@@ -38,7 +36,7 @@ PyModuleDef merge_mod = { PyModuleDef_HEAD_INIT,
 						  NULL,
 						  NULL };
 
-PyMODINIT_FUNC PyInit_merge( void )
+PyMODINIT_FUNC PyInit_core( void )
 {
 	return PyModule_Create( &merge_mod );
 }

@@ -1,3 +1,9 @@
-*.so
 build
-*.png
+*.so
+perf.png
+dist
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.DS_Store
