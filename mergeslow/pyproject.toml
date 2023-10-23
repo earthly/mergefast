@@ -1,12 +1,15 @@
 [tool.poetry]
-name = "merge"
-version = "0.1.0"
+name = "mergeslow"
+version = "0.1.1"
 description = ""
 authors = ["Adam Gordon Bell <adam@corecursive.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+twine = "^4.0.2"
 
 [build-system]
 requires = ["poetry-core"]

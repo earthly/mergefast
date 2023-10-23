@@ -1,34 +1,33 @@
 VERSION 0.7
 
-# Todo:
-# - +publish uses staging pypi
-# - twine upload steps
-# - poetry upload steps
-
 clean:
    LOCALLY
     RUN rm -rf build dist *.egg-info 
-    RUN rm ./mergeslow/*.so || true
 
 deps:
     FROM python:3.11-buster
-    RUN pip install poetry
+    RUN pip install poetry twine
 
 build:
     FROM +deps
     WORKDIR /code
     COPY --dir mergeslow tests .
-    COPY setup.py poetry.lock pyproject.toml README.md  .
+    COPY setup.py poetry.lock pyproject.toml README.md .
 
+twine-publish:
+    FROM +build
     # Two ways to build
     # creates a sdist for pypi
     RUN python3 setup.py sdist
 
-    # create bdist for pypy, in theory
-    # this is not useful, because need to use a manylinux image to make a wheel that works on pypi
+    # create bdist for pypy
     RUN python setup.py bdist_wheel
+    RUN twine upload --repository-url https://test.pypi.org/legacy/ dist/*
 
-    SAVE ARTIFACT ./dist AS LOCAL .
+poetry-publish:
+    FROM +build
+    RUN poetry config repositories.testpypi https://test.pypi.org/legacy/
+    RUN poetry publish --build --repository testpypi -n
 
 test-direct:
     FROM +build
@@ -43,12 +42,8 @@ test-dist-install:
     COPY tests .
     RUN python test.py
 
-publish:
-    FROM +build
-    RUN poetry publish --repository testpypi -n
-
 test-pypi-install:
     FROM python:3.11-buster
-    RUN pip install "mergeslow"
+    RUN pip install --index-url https://test.pypi.org/simple/ "mergeslow"
     COPY tests .
     RUN python test.py
