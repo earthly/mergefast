@@ -11,7 +11,7 @@ def merge_test():
    m1 = mergefast.merge(a, b)
 
 def sort_test():
-   m2 = list(a + b)
+   m2 = a + b
    m2.sort()
 
 sort_time = timeit.timeit("sort_test()", setup="from __main__ import sort_test", number=100000)
