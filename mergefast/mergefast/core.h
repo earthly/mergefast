@@ -1,5 +1,5 @@
-#ifndef __merge_H__
-#define __merge_H__
+#ifndef __core_H__
+#define __core_H__
 
 #include <Python.h>
 
