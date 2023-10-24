@@ -1,7 +1,7 @@
 #include <Python.h>
 #include <stdio.h>
 
-#include "merge.h"
+#include "core.h"
 
 /* Heterogeneous compare: default, always safe to fall back on. */
 static inline int object_compare( PyObject* v, PyObject* w )

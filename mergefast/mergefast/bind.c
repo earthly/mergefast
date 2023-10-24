@@ -1,4 +1,4 @@
-#include "merge.h"
+#include "core.h"
 
 PyMethodDef merge_funcs[] = { {
 								  "merge", /* function name */
