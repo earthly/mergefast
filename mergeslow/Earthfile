@@ -13,16 +13,18 @@ build:
     WORKDIR /code
     COPY --dir mergeslow tests .
     COPY setup.py poetry.lock pyproject.toml README.md .
-
-twine-publish:
-    FROM +build
     # Two ways to build
     # creates a sdist for pypi
     RUN python3 setup.py sdist
 
     # create bdist for pypy
     RUN python setup.py bdist_wheel
-    RUN twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+    SAVE ARTIFACT ./dist AS LOCAL .
+
+twine-publish:
+    FROM +build
+    COPY +build/dist dist
+    RUN twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
 
 poetry-publish:
     FROM +build
@@ -34,11 +36,19 @@ test-direct:
     RUN poetry install
     RUN poetry run python tests/test.py 
 
-test-dist-install:
+test-dist-tar-install:
     FROM python:3.11-buster
     COPY +build/dist dist
     ENV TARFILE=$(ls ./dist/*.tar.gz)
     RUN pip install "$TARFILE"
+    COPY tests .
+    RUN python test.py
+
+test-dist-whl-install:
+    FROM python:3.11-buster
+    COPY +build/dist dist
+    ENV WHLFILE=$(ls ./dist/*.whl)
+    RUN pip install "$WHLFILE"
     COPY tests .
     RUN python test.py
 
