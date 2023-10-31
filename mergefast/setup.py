@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from setuptools import setup, Extension, find_packages\
+from setuptools import setup, Extension, find_packages
 
 # https://pypi.org/project/mergefast/
 merge_module = Extension(
     "mergefast.core",
-    sources=["mergefast/bind.c", "mergefast/merge.c"],
+    sources=["mergefast/bind.c", "mergefast/core.c"],
     include_dirs=["mergefast"],
     extra_compile_args=["-O3"]
 )
