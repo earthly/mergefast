@@ -1,3 +1,4 @@
+use pyo3::prelude::*;
 use pyo3::Python;
 use pyo3::types::PyList;
 use pyo3::PyResult;
@@ -6,6 +7,9 @@ use pyo3::types::PyString;
 use pyo3::pyfunction;
 use pyo3::Py;
 use pyo3::PyAny;
+use pyo3::wrap_pyfunction;
+use pyo3::types::PyModule;
+use pyo3::pymodule;
 
 pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
     v.lt(w)
@@ -85,4 +89,15 @@ pub fn merge_int(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyLi
 #[pyfunction]
 pub fn merge_float(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
     merge_internal(py, list1, list2, &float_compare)
+}
+
+// This macro creates the Python module
+#[pymodule]
+pub fn core(py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(merge, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_latin, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_int, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_float, m)?)?;
+    
+    Ok(())
 }
