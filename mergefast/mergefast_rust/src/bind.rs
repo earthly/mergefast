@@ -1,10 +1,12 @@
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
+use pyo3::pyfunction;
+use pyo3::pymodule;
+use pyo3::PyResult;
+use pyo3::PyObject;
+use pyo3::types::PyTuple;
 
-// Assuming you have already translated these functions into Rust
-// in a file like core.rs
-mod core;
-use core::{merge, merge_latin, merge_int, merge_float};
+use ::core::{merge, merge_latin, merge_int, merge_float};
 
 #[pyfunction]
 pub fn merge(py: Python, args: &PyTuple) -> PyResult<PyObject> {

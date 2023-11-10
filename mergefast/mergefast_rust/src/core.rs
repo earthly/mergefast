@@ -1,11 +1,11 @@
-use pyo3::types::PyAny;
 use pyo3::Python;
+use pyo3::types::PyList;
 use pyo3::PyResult;
 use pyo3::types::PyFloat;
 use pyo3::types::PyString;
-use pyo3::types::{PyList, PyAny};
-use pyo3::PyResult;
-use pyo3::Python;
+use pyo3::pyfunction;
+use pyo3::Py;
+use pyo3::PyAny;
 
 pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
     v.lt(w)
@@ -38,8 +38,8 @@ pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn 
     let mut i2 = 0;
 
     while i1 < n1 || i2 < n2 {
-        let elem1 = if i1 < n1 { Some(list1.get_item(i1)) } else { None };
-        let elem2 = if i2 < n2 { Some(list2.get_item(i2)) } else { None };
+        let elem1 = if i1 < n1 { list1.get_item(i1).ok() } else { None };
+        let elem2 = if i2 < n2 { list2.get_item(i2).ok() } else { None };
 
         match (elem1, elem2) {
             (Some(e1), Some(e2)) => {
@@ -65,6 +65,7 @@ pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn 
 
     Ok(merged_list.into())
 }
+
 
 #[pyfunction]
 pub fn merge(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
