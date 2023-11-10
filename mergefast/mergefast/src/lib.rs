@@ -9,30 +9,39 @@ use pyo3::Py;
 use pyo3::PyAny;
 use pyo3::wrap_pyfunction;
 use pyo3::types::PyModule;
+use pyo3::types::IntoPyDict;
+use pyo3::PyNativeType;
 
-pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
-    v.lt(w)
+// pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+//     v.lt(w)
+// }
+
+// This is dog slow
+pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
+    let locals = [("v", v), ("w", w)].into_py_dict(*py);
+    let result: bool = py.eval("v < w", None, Some(locals))?.extract()?;
+    Ok(result)
 }
 
-pub fn float_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+pub fn float_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
     let v_float = v.downcast::<PyFloat>()?.value();
     let w_float = w.downcast::<PyFloat>()?.value();
     Ok(v_float < w_float)
 }
 
-pub fn long_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+pub fn long_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
     let v_int = v.extract::<i64>()?;
     let w_int = w.extract::<i64>()?;
     Ok(v_int < w_int)
 }
 
-pub fn latin_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+pub fn latin_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
     let v_str = v.downcast::<PyString>()?.to_str()?;
     let w_str = w.downcast::<PyString>()?.to_str()?;
     Ok(v_str < w_str)
 }
 
-pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn Fn(&PyAny, &PyAny) -> PyResult<bool>) -> PyResult<Py<PyList>> {
+pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn Fn(&PyAny, &PyAny, &Python) -> PyResult<bool>) -> PyResult<Py<PyList>> {
     let n1 = list1.len();
     let n2 = list2.len();
     let merged_list = PyList::empty(py);
@@ -46,7 +55,7 @@ pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn 
 
         match (elem1, elem2) {
             (Some(e1), Some(e2)) => {
-                if compare(e1, e2)? {
+                if compare(e1, e2, &py)? {
                     merged_list.append(e1)?;
                     i1 += 1;
                 } else {
