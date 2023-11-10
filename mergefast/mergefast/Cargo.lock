@@ -69,7 +69,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "multiply"
+name = "mergefast"
 version = "0.1.0"
 dependencies = [
  "pyo3",

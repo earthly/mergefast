@@ -5,13 +5,13 @@ from setuptools import setup
 from setuptools_rust import Binding, RustExtension
 
 setup(
-    name="rust",
+    name="mergefast",
     version="1.1.3",
     packages=find_packages(),
     rust_extensions=[
         RustExtension(
-            "rust",  # Updated module name
-            "mergefast_rust/Cargo.toml",  # Adjust path as necessary
+            "mergefast.mergefast",  # Updated module name
+            "mergefast/Cargo.toml",  # Adjust path as necessary
             binding=Binding.PyO3
         )
     ],

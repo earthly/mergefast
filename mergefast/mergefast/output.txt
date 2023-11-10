@@ -1,0 +1,910 @@
+.
+├── Cargo.lock
+├── Cargo.toml
+├── __init__.py
+├── output.txt
+├── print.sh
+├── src
+│   ├── lib.rs
+│   └── lib.rs1
+└── target
+    ├── CACHEDIR.TAG
+    ├── debug
+    │   ├── deps
+    │   │   ├── autocfg-2b309e81afeac4ad.d
+    │   │   ├── cfg_if-0f15ee7fef1c06f0.cfg_if.c8638ff9bffc0a8d-cgu.0.rcgu.o
+    │   │   ├── cfg_if-0f15ee7fef1c06f0.d
+    │   │   ├── cfg_if-b18fb75cffad301d.d
+    │   │   ├── heck-8cbc225cd3877b33.d
+    │   │   ├── indoc-64edcf308d3eb5dd.d
+    │   │   ├── indoc-64edcf308d3eb5dd.indoc.1056737822aee5b9-cgu.0.rcgu.o
+    │   │   ├── indoc-6ac66a4c05b616bc.d
+    │   │   ├── indoc-a4a7d332c42ed46d.d
+    │   │   ├── indoc_impl-b7885ad32c113e39.d
+    │   │   ├── indoc_impl-eed8861613ffc6f2.d
+    │   │   ├── instant-725a1459df4a2271.d
+    │   │   ├── instant-725a1459df4a2271.instant.8a2472332a574ec3-cgu.0.rcgu.o
+    │   │   ├── instant-9da6109f455b2441.d
+    │   │   ├── libautocfg-2b309e81afeac4ad.rlib
+    │   │   ├── libautocfg-2b309e81afeac4ad.rmeta
+    │   │   ├── libc-17070c36d16c61c7.d
+    │   │   ├── libc-17070c36d16c61c7.libc.31ebcd4e5ce0de3e-cgu.0.rcgu.o
+    │   │   ├── libc-d1bfbb565a5868b2.d
+    │   │   ├── libcfg_if-0f15ee7fef1c06f0.rlib
+    │   │   ├── libcfg_if-0f15ee7fef1c06f0.rmeta
+    │   │   ├── libcfg_if-b18fb75cffad301d.rmeta
+    │   │   ├── libheck-8cbc225cd3877b33.rlib
+    │   │   ├── libheck-8cbc225cd3877b33.rmeta
+    │   │   ├── libindoc-64edcf308d3eb5dd.rlib
+    │   │   ├── libindoc-64edcf308d3eb5dd.rmeta
+    │   │   ├── libindoc-6ac66a4c05b616bc.rmeta
+    │   │   ├── libindoc-a4a7d332c42ed46d.dylib
+    │   │   ├── libindoc_impl-b7885ad32c113e39.dylib
+    │   │   ├── libindoc_impl-eed8861613ffc6f2.dylib
+    │   │   ├── libinstant-725a1459df4a2271.rlib
+    │   │   ├── libinstant-725a1459df4a2271.rmeta
+    │   │   ├── libinstant-9da6109f455b2441.rmeta
+    │   │   ├── liblibc-17070c36d16c61c7.rlib
+    │   │   ├── liblibc-17070c36d16c61c7.rmeta
+    │   │   ├── liblibc-d1bfbb565a5868b2.rmeta
+    │   │   ├── liblock_api-6c50b29c5a5b7bcf.rmeta
+    │   │   ├── liblock_api-d73f677670ffe160.rlib
+    │   │   ├── liblock_api-d73f677670ffe160.rmeta
+    │   │   ├── libmemoffset-8895dfcca3fe340a.rlib
+    │   │   ├── libmemoffset-8895dfcca3fe340a.rmeta
+    │   │   ├── libmemoffset-c9006a999eee4370.rmeta
+    │   │   ├── libmergefast-060e929858065b8e.rmeta
+    │   │   ├── libmergefast-6d33cf58eceff095.rmeta
+    │   │   ├── libmergefast_rust-22fc95b178932994.rmeta
+    │   │   ├── libmergefast_rust-3baded5ea4aca20b.rmeta
+    │   │   ├── libonce_cell-205faecec129ed60.rlib
+    │   │   ├── libonce_cell-205faecec129ed60.rmeta
+    │   │   ├── libparking_lot-3cf7c3c8e070b876.rmeta
+    │   │   ├── libparking_lot-43efe3fae38b9ffb.rmeta
+    │   │   ├── libparking_lot-872066ab350528b9.rlib
+    │   │   ├── libparking_lot-872066ab350528b9.rmeta
+    │   │   ├── libparking_lot-8778261d47eab6dd.rlib
+    │   │   ├── libparking_lot-8778261d47eab6dd.rmeta
+    │   │   ├── libparking_lot_core-359beb424847fe0b.rlib
+    │   │   ├── libparking_lot_core-359beb424847fe0b.rmeta
+    │   │   ├── libparking_lot_core-9c66616d3da62a04.rmeta
+    │   │   ├── libparking_lot_core-f2846e43e414adf2.rmeta
+    │   │   ├── libparking_lot_core-fcfb7c5c453a34a7.rlib
+    │   │   ├── libparking_lot_core-fcfb7c5c453a34a7.rmeta
+    │   │   ├── libpaste-1bccaaa25e0769a1.rlib
+    │   │   ├── libpaste-1bccaaa25e0769a1.rmeta
+    │   │   ├── libpaste-85ab2fd80129409b.rmeta
+    │   │   ├── libpaste_impl-dab805a67a88046f.dylib
+    │   │   ├── libproc_macro2-3166814e0312bc6e.rlib
+    │   │   ├── libproc_macro2-3166814e0312bc6e.rmeta
+    │   │   ├── libproc_macro2-77c891dbca4d702a.rlib
+    │   │   ├── libproc_macro2-77c891dbca4d702a.rmeta
+    │   │   ├── libproc_macro_hack-013e4d9f8b9a0fa4.dylib
+    │   │   ├── libpyo3-5654f3964a888ef4.rmeta
+    │   │   ├── libpyo3-569388e3961b5f38.rlib
+    │   │   ├── libpyo3-569388e3961b5f38.rmeta
+    │   │   ├── libpyo3-5ecbc2443e99d750.rmeta
+    │   │   ├── libpyo3-ff04dd2c111c1bf2.rlib
+    │   │   ├── libpyo3-ff04dd2c111c1bf2.rmeta
+    │   │   ├── libpyo3_build_config-5d0db7e131e9ca75.rlib
+    │   │   ├── libpyo3_build_config-5d0db7e131e9ca75.rmeta
+    │   │   ├── libpyo3_build_config-779c3a1fe5f509ed.rlib
+    │   │   ├── libpyo3_build_config-779c3a1fe5f509ed.rmeta
+    │   │   ├── libpyo3_ffi-e5e23be2b4b06457.rlib
+    │   │   ├── libpyo3_ffi-e5e23be2b4b06457.rmeta
+    │   │   ├── libpyo3_ffi-ec5aadc975d1088f.rmeta
+    │   │   ├── libpyo3_macros-10e741e4d245b27c.dylib
+    │   │   ├── libpyo3_macros-3de41b19f6ef9d56.dylib
+    │   │   ├── libpyo3_macros_backend-2ee76a90e119a813.rlib
+    │   │   ├── libpyo3_macros_backend-2ee76a90e119a813.rmeta
+    │   │   ├── libpyo3_macros_backend-766a1f1be52dcd6b.rlib
+    │   │   ├── libpyo3_macros_backend-766a1f1be52dcd6b.rmeta
+    │   │   ├── libquote-5742d7e8e00896d1.rlib
+    │   │   ├── libquote-5742d7e8e00896d1.rmeta
+    │   │   ├── libquote-a3c2c41e9cadba5e.rlib
+    │   │   ├── libquote-a3c2c41e9cadba5e.rmeta
+    │   │   ├── librust-4d5a92add07a3b5d.rmeta
+    │   │   ├── librust-966e16cef9a21a32.rmeta
+    │   │   ├── librust-e34a1bdd1b561787.rmeta
+    │   │   ├── librust-f9ef8d70fa9dc1f0.rmeta
+    │   │   ├── librust.dylib
+    │   │   ├── libscopeguard-8af42c6df0f5730c.rlib
+    │   │   ├── libscopeguard-8af42c6df0f5730c.rmeta
+    │   │   ├── libscopeguard-cdc95a57369ee18b.rmeta
+    │   │   ├── libsmallvec-27fb274a9aa722b0.rlib
+    │   │   ├── libsmallvec-27fb274a9aa722b0.rmeta
+    │   │   ├── libsmallvec-79a9594df1c1dfd6.rmeta
+    │   │   ├── libsyn-f32bd6543dabaa3b.rlib
+    │   │   ├── libsyn-f32bd6543dabaa3b.rmeta
+    │   │   ├── libsyn-f5f07ebe7b7ddd77.rlib
+    │   │   ├── libsyn-f5f07ebe7b7ddd77.rmeta
+    │   │   ├── libtarget_lexicon-496e320183ff3ca3.rlib
+    │   │   ├── libtarget_lexicon-496e320183ff3ca3.rmeta
+    │   │   ├── libunicode_ident-7c3b1ed9cfc60951.rlib
+    │   │   ├── libunicode_ident-7c3b1ed9cfc60951.rmeta
+    │   │   ├── libunindent-12ad549932dcbb83.rlib
+    │   │   ├── libunindent-12ad549932dcbb83.rmeta
+    │   │   ├── libunindent-2295f2149f12b805.rmeta
+    │   │   ├── libunindent-2a1d90becfab759c.rmeta
+    │   │   ├── libunindent-539db38bc685f65d.rlib
+    │   │   ├── libunindent-539db38bc685f65d.rmeta
+    │   │   ├── libunindent-69bb0fcb78df673f.rlib
+    │   │   ├── libunindent-69bb0fcb78df673f.rmeta
+    │   │   ├── lock_api-6c50b29c5a5b7bcf.d
+    │   │   ├── lock_api-d73f677670ffe160.d
+    │   │   ├── lock_api-d73f677670ffe160.lock_api.14a0fec8805cad5d-cgu.0.rcgu.o
+    │   │   ├── memoffset-8895dfcca3fe340a.d
+    │   │   ├── memoffset-8895dfcca3fe340a.memoffset.61cbbb3897c5cb7a-cgu.0.rcgu.o
+    │   │   ├── memoffset-c9006a999eee4370.d
+    │   │   ├── mergefast-060e929858065b8e.d
+    │   │   ├── mergefast-6d33cf58eceff095.d
+    │   │   ├── mergefast.102fk7kvt9fe6t0k.rcgu.o
+    │   │   ├── mergefast.11eylfrkwqbdvevq.rcgu.o
+    │   │   ├── mergefast.1453d2j1wfz0k1s9.rcgu.o
+    │   │   ├── mergefast.151e9p3behqpfotr.rcgu.o
+    │   │   ├── mergefast.16bux1c49rgy9fe9.rcgu.o
+    │   │   ├── mergefast.16srfnoxmv19hloo.rcgu.o
+    │   │   ├── mergefast.17l2rctomr4y8oh9.rcgu.o
+    │   │   ├── mergefast.1hy63esuqgynjlxf.rcgu.o
+    │   │   ├── mergefast.1imzhlblfjiqy7s5.rcgu.o
+    │   │   ├── mergefast.1qag4wg13v02wld5.rcgu.o
+    │   │   ├── mergefast.23xikgvhpjvlasj8.rcgu.o
+    │   │   ├── mergefast.25440bw94btol5mn.rcgu.o
+    │   │   ├── mergefast.29h8ankm2gj5rudy.rcgu.o
+    │   │   ├── mergefast.2lkofzvyf1tlf9fw.rcgu.o
+    │   │   ├── mergefast.2v6getoua6jwundh.rcgu.o
+    │   │   ├── mergefast.2zvpzp5u5nrmwqm2.rcgu.o
+    │   │   ├── mergefast.317x5lzd44hgf55b.rcgu.o
+    │   │   ├── mergefast.339runa98pomgmfg.rcgu.o
+    │   │   ├── mergefast.345jgsvy9e4akcza.rcgu.o
+    │   │   ├── mergefast.34t01seur3tp9rdl.rcgu.o
+    │   │   ├── mergefast.3ckyh2ls0454ixhh.rcgu.o
+    │   │   ├── mergefast.3ewgytgnqq3zhvgd.rcgu.o
+    │   │   ├── mergefast.3f4qfsst28qwp4cz.rcgu.o
+    │   │   ├── mergefast.3gs41p87bwxb8wqi.rcgu.o
+    │   │   ├── mergefast.3i86lgymb0zlsjva.rcgu.o
+    │   │   ├── mergefast.3iozn3biy5b6an59.rcgu.o
+    │   │   ├── mergefast.3lv5mdenio5hea83.rcgu.o
+    │   │   ├── mergefast.3s6sj6gsmf1vx31c.rcgu.o
+    │   │   ├── mergefast.3uh4ayfohhve5s5y.rcgu.o
+    │   │   ├── mergefast.3yw6qtf58fbtkivx.rcgu.o
+    │   │   ├── mergefast.4532slk1fi6c8ihu.rcgu.o
+    │   │   ├── mergefast.4eg4y7fedd2h5xam.rcgu.o
+    │   │   ├── mergefast.4qcxnkcom8wpt4g8.rcgu.o
+    │   │   ├── mergefast.4tba5tn53ekch30h.rcgu.o
+    │   │   ├── mergefast.d
+    │   │   ├── mergefast.eujwt8eufy9q551.rcgu.o
+    │   │   ├── mergefast.gby87fey792vjih.rcgu.o
+    │   │   ├── mergefast.i18qzdqwoy2wdt1.rcgu.o
+    │   │   ├── mergefast.ichnwq9rlmcgkpv.rcgu.o
+    │   │   ├── mergefast.kgoykq1r3paes3c.rcgu.o
+    │   │   ├── mergefast.n5jpw135jlgyixq.rcgu.o
+    │   │   ├── mergefast.rf1y99s360s5lnb.rcgu.o
+    │   │   ├── mergefast.t3h5x719uss00oa.rcgu.o
+    │   │   ├── mergefast.z8d6pzlhil6e7je.rcgu.o
+    │   │   ├── mergefast_rust-22fc95b178932994.d
+    │   │   ├── mergefast_rust-3baded5ea4aca20b.d
+    │   │   ├── mergefast_rust.10ka5jfb688iw4vb.rcgu.o
+    │   │   ├── mergefast_rust.10nqe5zvtxqcp6tq.rcgu.o
+    │   │   ├── mergefast_rust.15aippo6bne24z95.rcgu.o
+    │   │   ├── mergefast_rust.1fgkucgodgqqf3ju.rcgu.o
+    │   │   ├── mergefast_rust.1nrpkx8wlcbaqe2c.rcgu.o
+    │   │   ├── mergefast_rust.1nvrjpszzjzjr7x5.rcgu.o
+    │   │   ├── mergefast_rust.1ryrj8xqd3q8iyg.rcgu.o
+    │   │   ├── mergefast_rust.1s6qld2t28mftzmr.rcgu.o
+    │   │   ├── mergefast_rust.1wma1i0gs4wc9qva.rcgu.o
+    │   │   ├── mergefast_rust.1yfzo1x2rd4rtmox.rcgu.o
+    │   │   ├── mergefast_rust.20h4gxaspj877ofy.rcgu.o
+    │   │   ├── mergefast_rust.284lx7532ifu0sxr.rcgu.o
+    │   │   ├── mergefast_rust.2admrp7j7k5goue8.rcgu.o
+    │   │   ├── mergefast_rust.2qh0dzcjed7ox650.rcgu.o
+    │   │   ├── mergefast_rust.2qr3dm7zx8dacxid.rcgu.o
+    │   │   ├── mergefast_rust.2r9eih6vfhtlbf4c.rcgu.o
+    │   │   ├── mergefast_rust.2vlev2zp7zd36dpa.rcgu.o
+    │   │   ├── mergefast_rust.2ybe27bze9qtqy0d.rcgu.o
+    │   │   ├── mergefast_rust.30h1rz776jfgkzst.rcgu.o
+    │   │   ├── mergefast_rust.3cfp723c7c0l35ov.rcgu.o
+    │   │   ├── mergefast_rust.3dapc0t12cez2sza.rcgu.o
+    │   │   ├── mergefast_rust.3filwlvfi9xs59p4.rcgu.o
+    │   │   ├── mergefast_rust.3o56f5ni86p1k8k2.rcgu.o
+    │   │   ├── mergefast_rust.3pzo23d6fnshjjrt.rcgu.o
+    │   │   ├── mergefast_rust.3s2vwaa7bteen5xc.rcgu.o
+    │   │   ├── mergefast_rust.3smrpoyesz98g0by.rcgu.o
+    │   │   ├── mergefast_rust.3stc3vf7x1urhtdh.rcgu.o
+    │   │   ├── mergefast_rust.3v18z0wbmhfeg4f0.rcgu.o
+    │   │   ├── mergefast_rust.3x7aqvuiq5l2cf4r.rcgu.o
+    │   │   ├── mergefast_rust.48hn3zob5bs278tb.rcgu.o
+    │   │   ├── mergefast_rust.49414oy5xaumbu73.rcgu.o
+    │   │   ├── mergefast_rust.4bos3e6jmx8f1mc9.rcgu.o
+    │   │   ├── mergefast_rust.4dkrnh3v2kcjdywk.rcgu.o
+    │   │   ├── mergefast_rust.4ed5r724vczwo9cf.rcgu.o
+    │   │   ├── mergefast_rust.4odrtd17lvijgtk6.rcgu.o
+    │   │   ├── mergefast_rust.4x5t27h0h6kb88vf.rcgu.o
+    │   │   ├── mergefast_rust.4yakzkoudttrd2ch.rcgu.o
+    │   │   ├── mergefast_rust.4ze4nd46nksyo4sf.rcgu.o
+    │   │   ├── mergefast_rust.50i06zirvqlp0riy.rcgu.o
+    │   │   ├── mergefast_rust.50te3mg2q6rpuv9n.rcgu.o
+    │   │   ├── mergefast_rust.55xblszqsgj1rob4.rcgu.o
+    │   │   ├── mergefast_rust.56r2zwph482g7a1b.rcgu.o
+    │   │   ├── mergefast_rust.576c4eovtkuqs59w.rcgu.o
+    │   │   ├── mergefast_rust.5bi0qfhqi67cd5kx.rcgu.o
+    │   │   ├── mergefast_rust.d
+    │   │   ├── mergefast_rust.p74ekkjo6n8fix8.rcgu.o
+    │   │   ├── mergefast_rust.qeu9v9pdbd1cwuc.rcgu.o
+    │   │   ├── mergefast_rust.qm99a6hnx7rsnvs.rcgu.o
+    │   │   ├── mergefast_rust.v3yp2yleo2fsdvp.rcgu.o
+    │   │   ├── mergefast_rust.wpgue69n9iksq3v.rcgu.o
+    │   │   ├── mergefast_rust.yn49u7rgx8yxs6s.rcgu.o
+    │   │   ├── once_cell-205faecec129ed60.d
+    │   │   ├── parking_lot-3cf7c3c8e070b876.d
+    │   │   ├── parking_lot-43efe3fae38b9ffb.d
+    │   │   ├── parking_lot-872066ab350528b9.d
+    │   │   ├── parking_lot-872066ab350528b9.parking_lot.53c1fe9dd0d99645-cgu.0.rcgu.o
+    │   │   ├── parking_lot-872066ab350528b9.parking_lot.53c1fe9dd0d99645-cgu.1.rcgu.o
+    │   │   ├── parking_lot-872066ab350528b9.parking_lot.53c1fe9dd0d99645-cgu.2.rcgu.o
+    │   │   ├── parking_lot-872066ab350528b9.parking_lot.53c1fe9dd0d99645-cgu.3.rcgu.o
+    │   │   ├── parking_lot-8778261d47eab6dd.d
+    │   │   ├── parking_lot-8778261d47eab6dd.parking_lot.18f5cfc56ac1ab0f-cgu.0.rcgu.o
+    │   │   ├── parking_lot-8778261d47eab6dd.parking_lot.18f5cfc56ac1ab0f-cgu.1.rcgu.o
+    │   │   ├── parking_lot-8778261d47eab6dd.parking_lot.18f5cfc56ac1ab0f-cgu.2.rcgu.o
+    │   │   ├── parking_lot-8778261d47eab6dd.parking_lot.18f5cfc56ac1ab0f-cgu.3.rcgu.o
+    │   │   ├── parking_lot_core-359beb424847fe0b.d
+    │   │   ├── parking_lot_core-359beb424847fe0b.parking_lot_core.867d5df52e41c2-cgu.0.rcgu.o
+    │   │   ├── parking_lot_core-359beb424847fe0b.parking_lot_core.867d5df52e41c2-cgu.1.rcgu.o
+    │   │   ├── parking_lot_core-359beb424847fe0b.parking_lot_core.867d5df52e41c2-cgu.2.rcgu.o
+    │   │   ├── parking_lot_core-9c66616d3da62a04.d
+    │   │   ├── parking_lot_core-f2846e43e414adf2.d
+    │   │   ├── parking_lot_core-fcfb7c5c453a34a7.d
+    │   │   ├── parking_lot_core-fcfb7c5c453a34a7.parking_lot_core.998d526b155dfa6-cgu.0.rcgu.o
+    │   │   ├── parking_lot_core-fcfb7c5c453a34a7.parking_lot_core.998d526b155dfa6-cgu.1.rcgu.o
+    │   │   ├── parking_lot_core-fcfb7c5c453a34a7.parking_lot_core.998d526b155dfa6-cgu.2.rcgu.o
+    │   │   ├── paste-1bccaaa25e0769a1.d
+    │   │   ├── paste-1bccaaa25e0769a1.paste.325611cb76fdb17f-cgu.0.rcgu.o
+    │   │   ├── paste-85ab2fd80129409b.d
+    │   │   ├── paste_impl-dab805a67a88046f.d
+    │   │   ├── proc_macro2-3166814e0312bc6e.d
+    │   │   ├── proc_macro2-77c891dbca4d702a.d
+    │   │   ├── proc_macro_hack-013e4d9f8b9a0fa4.d
+    │   │   ├── pyo3-5654f3964a888ef4.d
+    │   │   ├── pyo3-569388e3961b5f38.d
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.00.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.01.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.02.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.03.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.04.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.05.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.06.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.07.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.08.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.09.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.10.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.11.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.12.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.13.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.14.rcgu.o
+    │   │   ├── pyo3-569388e3961b5f38.pyo3.df958c51c9edc1f4-cgu.15.rcgu.o
+    │   │   ├── pyo3-5ecbc2443e99d750.d
+    │   │   ├── pyo3-ff04dd2c111c1bf2.d
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.00.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.01.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.02.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.03.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.04.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.05.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.06.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.07.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.08.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.09.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.10.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.11.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.12.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.13.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.14.rcgu.o
+    │   │   ├── pyo3-ff04dd2c111c1bf2.pyo3.ae25049d0141b94d-cgu.15.rcgu.o
+    │   │   ├── pyo3_build_config-5d0db7e131e9ca75.d
+    │   │   ├── pyo3_build_config-779c3a1fe5f509ed.d
+    │   │   ├── pyo3_ffi-e5e23be2b4b06457.d
+    │   │   ├── pyo3_ffi-e5e23be2b4b06457.pyo3_ffi.7136b0d5a1c4a957-cgu.0.rcgu.o
+    │   │   ├── pyo3_ffi-ec5aadc975d1088f.d
+    │   │   ├── pyo3_macros-10e741e4d245b27c.d
+    │   │   ├── pyo3_macros-3de41b19f6ef9d56.d
+    │   │   ├── pyo3_macros_backend-2ee76a90e119a813.d
+    │   │   ├── pyo3_macros_backend-766a1f1be52dcd6b.d
+    │   │   ├── quote-5742d7e8e00896d1.d
+    │   │   ├── quote-a3c2c41e9cadba5e.d
+    │   │   ├── rust-4d5a92add07a3b5d.d
+    │   │   ├── rust-966e16cef9a21a32.d
+    │   │   ├── rust-e34a1bdd1b561787.d
+    │   │   ├── rust-f9ef8d70fa9dc1f0.d
+    │   │   ├── rust.12q6q8p8g64t9q5n.rcgu.o
+    │   │   ├── rust.15vkdrsgzuhk4cln.rcgu.o
+    │   │   ├── rust.17ax1vdhmi0rusro.rcgu.o
+    │   │   ├── rust.17mt3xz2930swv1v.rcgu.o
+    │   │   ├── rust.1mc9yowbaqj42e0m.rcgu.o
+    │   │   ├── rust.1p41vi6fdauiojkp.rcgu.o
+    │   │   ├── rust.1p7sk0kxle3f95bd.rcgu.o
+    │   │   ├── rust.1uapig8379wnq585.rcgu.o
+    │   │   ├── rust.1v6sr9x8yydojidd.rcgu.o
+    │   │   ├── rust.1yyojsvtzilb1cl9.rcgu.o
+    │   │   ├── rust.2en2xtbd8d37ws86.rcgu.o
+    │   │   ├── rust.2fm7y6ilxyikdpo2.rcgu.o
+    │   │   ├── rust.2kymoc4wk7c0k8gd.rcgu.o
+    │   │   ├── rust.2voe7h55p90syctp.rcgu.o
+    │   │   ├── rust.2werbqu58zoxd6bm.rcgu.o
+    │   │   ├── rust.3bq1yk53yh5e0ts7.rcgu.o
+    │   │   ├── rust.3f3wub6s6c2g0gfk.rcgu.o
+    │   │   ├── rust.3ghxo35wopxvb0rh.rcgu.o
+    │   │   ├── rust.3ilas59nbevsn0s3.rcgu.o
+    │   │   ├── rust.3lmaqnagihuf4gyp.rcgu.o
+    │   │   ├── rust.3mkxlr197hdiy44x.rcgu.o
+    │   │   ├── rust.3n11yq30vm459947.rcgu.o
+    │   │   ├── rust.3ovn4c81mdqhzh28.rcgu.o
+    │   │   ├── rust.3qa9zepqdqjhjz27.rcgu.o
+    │   │   ├── rust.3vxoap0tn5aj6tkd.rcgu.o
+    │   │   ├── rust.3wqee1i95ljge1o7.rcgu.o
+    │   │   ├── rust.46k6boy6xiw46xx4.rcgu.o
+    │   │   ├── rust.48o0wj562gw0vou3.rcgu.o
+    │   │   ├── rust.4bu0zhwdyg1uq68b.rcgu.o
+    │   │   ├── rust.4hns4ug1oidc6p6j.rcgu.o
+    │   │   ├── rust.4jwvp1tgeokc9kq1.rcgu.o
+    │   │   ├── rust.4qm25jcc7ujd9y7o.rcgu.o
+    │   │   ├── rust.4th575ecxtdpa76f.rcgu.o
+    │   │   ├── rust.4venpd36wn2hs6to.rcgu.o
+    │   │   ├── rust.51skp1hb331ebqxk.rcgu.o
+    │   │   ├── rust.58bjfq29inuz45sh.rcgu.o
+    │   │   ├── rust.5baon81s3zginej6.rcgu.o
+    │   │   ├── rust.5g9k0c6vj4ztqm6p.rcgu.o
+    │   │   ├── rust.d
+    │   │   ├── rust.gnhyaojlm15d6hq.rcgu.o
+    │   │   ├── rust.ir4xbpd4koreae2.rcgu.o
+    │   │   ├── rust.jf6vu046x9v0rla.rcgu.o
+    │   │   ├── rust.tofroyccs8p4ie0.rcgu.o
+    │   │   ├── rust.xazxhhvj94kpt1k.rcgu.o
+    │   │   ├── scopeguard-8af42c6df0f5730c.d
+    │   │   ├── scopeguard-8af42c6df0f5730c.scopeguard.88f613e9e633c696-cgu.0.rcgu.o
+    │   │   ├── scopeguard-cdc95a57369ee18b.d
+    │   │   ├── smallvec-27fb274a9aa722b0.d
+    │   │   ├── smallvec-27fb274a9aa722b0.smallvec.4a8d845607f1aced-cgu.0.rcgu.o
+    │   │   ├── smallvec-79a9594df1c1dfd6.d
+    │   │   ├── syn-f32bd6543dabaa3b.d
+    │   │   ├── syn-f5f07ebe7b7ddd77.d
+    │   │   ├── target_lexicon-496e320183ff3ca3.d
+    │   │   ├── unicode_ident-7c3b1ed9cfc60951.d
+    │   │   ├── unindent-12ad549932dcbb83.d
+    │   │   ├── unindent-2295f2149f12b805.d
+    │   │   ├── unindent-2a1d90becfab759c.d
+    │   │   ├── unindent-539db38bc685f65d.d
+    │   │   ├── unindent-539db38bc685f65d.unindent.4e7d4ae05958655f-cgu.0.rcgu.o
+    │   │   ├── unindent-69bb0fcb78df673f.d
+    │   │   └── unindent-69bb0fcb78df673f.unindent.601955bcbdc8ecc6-cgu.0.rcgu.o
+    │   ├── examples
+    │   ├── incremental
+    │   │   ├── mergefast-3e5x3vq3ii3xq
+    │   │   │   ├── s-gqgzq0t062-jme5uy-9ggz1iy6ocnn6uoaio1onfhei
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgzq0t062-jme5uy.lock
+    │   │   ├── mergefast-56g1zuhxdmzx
+    │   │   │   ├── s-gqgzq0t05e-v8rc0m-dqz3fauoiypmpwoudpjrznbk2
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgzq0t05e-v8rc0m.lock
+    │   │   ├── mergefast-beatwgz1o9fx
+    │   │   │   ├── s-gqgzql5tue-ztzyo7-5g0d68xr5phnukr6i3wq5ajhj
+    │   │   │   │   ├── 102fk7kvt9fe6t0k.o
+    │   │   │   │   ├── 11eylfrkwqbdvevq.o
+    │   │   │   │   ├── 1453d2j1wfz0k1s9.o
+    │   │   │   │   ├── 151e9p3behqpfotr.o
+    │   │   │   │   ├── 16bux1c49rgy9fe9.o
+    │   │   │   │   ├── 16srfnoxmv19hloo.o
+    │   │   │   │   ├── 17l2rctomr4y8oh9.o
+    │   │   │   │   ├── 1hy63esuqgynjlxf.o
+    │   │   │   │   ├── 1imzhlblfjiqy7s5.o
+    │   │   │   │   ├── 1qag4wg13v02wld5.o
+    │   │   │   │   ├── 23xikgvhpjvlasj8.o
+    │   │   │   │   ├── 25440bw94btol5mn.o
+    │   │   │   │   ├── 29h8ankm2gj5rudy.o
+    │   │   │   │   ├── 2lkofzvyf1tlf9fw.o
+    │   │   │   │   ├── 2v6getoua6jwundh.o
+    │   │   │   │   ├── 2zvpzp5u5nrmwqm2.o
+    │   │   │   │   ├── 317x5lzd44hgf55b.o
+    │   │   │   │   ├── 339runa98pomgmfg.o
+    │   │   │   │   ├── 345jgsvy9e4akcza.o
+    │   │   │   │   ├── 34t01seur3tp9rdl.o
+    │   │   │   │   ├── 3ckyh2ls0454ixhh.o
+    │   │   │   │   ├── 3ewgytgnqq3zhvgd.o
+    │   │   │   │   ├── 3f4qfsst28qwp4cz.o
+    │   │   │   │   ├── 3gs41p87bwxb8wqi.o
+    │   │   │   │   ├── 3i86lgymb0zlsjva.o
+    │   │   │   │   ├── 3iozn3biy5b6an59.o
+    │   │   │   │   ├── 3lv5mdenio5hea83.o
+    │   │   │   │   ├── 3s6sj6gsmf1vx31c.o
+    │   │   │   │   ├── 3uh4ayfohhve5s5y.o
+    │   │   │   │   ├── 3yw6qtf58fbtkivx.o
+    │   │   │   │   ├── 4532slk1fi6c8ihu.o
+    │   │   │   │   ├── 4eg4y7fedd2h5xam.o
+    │   │   │   │   ├── 4qcxnkcom8wpt4g8.o
+    │   │   │   │   ├── 4tba5tn53ekch30h.o
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── eujwt8eufy9q551.o
+    │   │   │   │   ├── gby87fey792vjih.o
+    │   │   │   │   ├── i18qzdqwoy2wdt1.o
+    │   │   │   │   ├── ichnwq9rlmcgkpv.o
+    │   │   │   │   ├── kgoykq1r3paes3c.o
+    │   │   │   │   ├── n5jpw135jlgyixq.o
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   ├── rf1y99s360s5lnb.o
+    │   │   │   │   ├── t3h5x719uss00oa.o
+    │   │   │   │   ├── work-products.bin
+    │   │   │   │   └── z8d6pzlhil6e7je.o
+    │   │   │   ├── s-gqgzql5tue-ztzyo7.lock
+    │   │   │   ├── s-gqh0cvqyxs-o1t9pv-working
+    │   │   │   │   └── dep-graph.part.bin
+    │   │   │   └── s-gqh0cvqyxs-o1t9pv.lock
+    │   │   ├── mergefast_rust-18o0ihoirjozb
+    │   │   │   ├── s-gqgycaloo4-1upbw5t-bisibvw8tv6msjl3eex11mw2e
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgycaloo4-1upbw5t.lock
+    │   │   ├── mergefast_rust-1hgapbf59p830
+    │   │   │   ├── s-gqgycalot7-3mokp3-8kv2dbvixl4u0d8hl0gfrqhj4
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgycalot7-3mokp3.lock
+    │   │   ├── mergefast_rust-9jof9cukv643
+    │   │   │   ├── s-gqgychww25-xp4xao-3kd7ejxikv1ffjs7qovg5p7cs
+    │   │   │   │   ├── 10ka5jfb688iw4vb.o
+    │   │   │   │   ├── 10nqe5zvtxqcp6tq.o
+    │   │   │   │   ├── 1fgkucgodgqqf3ju.o
+    │   │   │   │   ├── 1nrpkx8wlcbaqe2c.o
+    │   │   │   │   ├── 1nvrjpszzjzjr7x5.o
+    │   │   │   │   ├── 1ryrj8xqd3q8iyg.o
+    │   │   │   │   ├── 1s6qld2t28mftzmr.o
+    │   │   │   │   ├── 1wma1i0gs4wc9qva.o
+    │   │   │   │   ├── 284lx7532ifu0sxr.o
+    │   │   │   │   ├── 2qr3dm7zx8dacxid.o
+    │   │   │   │   ├── 2r9eih6vfhtlbf4c.o
+    │   │   │   │   ├── 2vlev2zp7zd36dpa.o
+    │   │   │   │   ├── 2ybe27bze9qtqy0d.o
+    │   │   │   │   ├── 30h1rz776jfgkzst.o
+    │   │   │   │   ├── 3cfp723c7c0l35ov.o
+    │   │   │   │   ├── 3dapc0t12cez2sza.o
+    │   │   │   │   ├── 3filwlvfi9xs59p4.o
+    │   │   │   │   ├── 3o56f5ni86p1k8k2.o
+    │   │   │   │   ├── 3pzo23d6fnshjjrt.o
+    │   │   │   │   ├── 3s2vwaa7bteen5xc.o
+    │   │   │   │   ├── 3smrpoyesz98g0by.o
+    │   │   │   │   ├── 3stc3vf7x1urhtdh.o
+    │   │   │   │   ├── 3v18z0wbmhfeg4f0.o
+    │   │   │   │   ├── 3x7aqvuiq5l2cf4r.o
+    │   │   │   │   ├── 48hn3zob5bs278tb.o
+    │   │   │   │   ├── 49414oy5xaumbu73.o
+    │   │   │   │   ├── 4bos3e6jmx8f1mc9.o
+    │   │   │   │   ├── 4dkrnh3v2kcjdywk.o
+    │   │   │   │   ├── 4ed5r724vczwo9cf.o
+    │   │   │   │   ├── 4x5t27h0h6kb88vf.o
+    │   │   │   │   ├── 4yakzkoudttrd2ch.o
+    │   │   │   │   ├── 4ze4nd46nksyo4sf.o
+    │   │   │   │   ├── 50i06zirvqlp0riy.o
+    │   │   │   │   ├── 50te3mg2q6rpuv9n.o
+    │   │   │   │   ├── 56r2zwph482g7a1b.o
+    │   │   │   │   ├── 5bi0qfhqi67cd5kx.o
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── qeu9v9pdbd1cwuc.o
+    │   │   │   │   ├── qm99a6hnx7rsnvs.o
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   ├── v3yp2yleo2fsdvp.o
+    │   │   │   │   ├── work-products.bin
+    │   │   │   │   └── wpgue69n9iksq3v.o
+    │   │   │   └── s-gqgychww25-xp4xao.lock
+    │   │   ├── rust-17d7u5ifjl88s
+    │   │   │   ├── s-gqgzpxz3qh-1kodul1-4eh850jd5vvn5h0em4dyp65kx
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgzpxz3qh-1kodul1.lock
+    │   │   ├── rust-1fjhxchznrjno
+    │   │   │   ├── s-gqgyjx06e4-1yasmsc-24fg23q8or2l3sif9zildci21
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgyjx06e4-1yasmsc.lock
+    │   │   ├── rust-1jqjdsgeq5he1
+    │   │   │   ├── s-gqgzpxz3np-szq73t-cqur0nk2cexyn78a3jfo1gvy9
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   └── work-products.bin
+    │   │   │   └── s-gqgzpxz3np-szq73t.lock
+    │   │   ├── rust-1o6lzi7p9zz4f
+    │   │   │   ├── s-gqgz4tyu6n-1n78nr9-c0zbq6pefcnmygtx5bo56age7
+    │   │   │   │   ├── 12q6q8p8g64t9q5n.o
+    │   │   │   │   ├── 15vkdrsgzuhk4cln.o
+    │   │   │   │   ├── 17ax1vdhmi0rusro.o
+    │   │   │   │   ├── 17mt3xz2930swv1v.o
+    │   │   │   │   ├── 1mc9yowbaqj42e0m.o
+    │   │   │   │   ├── 1p41vi6fdauiojkp.o
+    │   │   │   │   ├── 1p7sk0kxle3f95bd.o
+    │   │   │   │   ├── 1uapig8379wnq585.o
+    │   │   │   │   ├── 1v6sr9x8yydojidd.o
+    │   │   │   │   ├── 1yyojsvtzilb1cl9.o
+    │   │   │   │   ├── 2en2xtbd8d37ws86.o
+    │   │   │   │   ├── 2fm7y6ilxyikdpo2.o
+    │   │   │   │   ├── 2kymoc4wk7c0k8gd.o
+    │   │   │   │   ├── 2voe7h55p90syctp.o
+    │   │   │   │   ├── 2werbqu58zoxd6bm.o
+    │   │   │   │   ├── 3bq1yk53yh5e0ts7.o
+    │   │   │   │   ├── 3f3wub6s6c2g0gfk.o
+    │   │   │   │   ├── 3ghxo35wopxvb0rh.o
+    │   │   │   │   ├── 3ilas59nbevsn0s3.o
+    │   │   │   │   ├── 3lmaqnagihuf4gyp.o
+    │   │   │   │   ├── 3mkxlr197hdiy44x.o
+    │   │   │   │   ├── 3n11yq30vm459947.o
+    │   │   │   │   ├── 3ovn4c81mdqhzh28.o
+    │   │   │   │   ├── 3qa9zepqdqjhjz27.o
+    │   │   │   │   ├── 3vxoap0tn5aj6tkd.o
+    │   │   │   │   ├── 3wqee1i95ljge1o7.o
+    │   │   │   │   ├── 46k6boy6xiw46xx4.o
+    │   │   │   │   ├── 48o0wj562gw0vou3.o
+    │   │   │   │   ├── 4bu0zhwdyg1uq68b.o
+    │   │   │   │   ├── 4hns4ug1oidc6p6j.o
+    │   │   │   │   ├── 4jwvp1tgeokc9kq1.o
+    │   │   │   │   ├── 4qm25jcc7ujd9y7o.o
+    │   │   │   │   ├── 4th575ecxtdpa76f.o
+    │   │   │   │   ├── 4venpd36wn2hs6to.o
+    │   │   │   │   ├── 51skp1hb331ebqxk.o
+    │   │   │   │   ├── 58bjfq29inuz45sh.o
+    │   │   │   │   ├── 5baon81s3zginej6.o
+    │   │   │   │   ├── 5g9k0c6vj4ztqm6p.o
+    │   │   │   │   ├── dep-graph.bin
+    │   │   │   │   ├── gnhyaojlm15d6hq.o
+    │   │   │   │   ├── ir4xbpd4koreae2.o
+    │   │   │   │   ├── jf6vu046x9v0rla.o
+    │   │   │   │   ├── query-cache.bin
+    │   │   │   │   ├── tofroyccs8p4ie0.o
+    │   │   │   │   ├── work-products.bin
+    │   │   │   │   └── xazxhhvj94kpt1k.o
+    │   │   │   └── s-gqgz4tyu6n-1n78nr9.lock
+    │   │   └── rust-bqh2getkq2m0
+    │   │       ├── s-gqgyjx06g8-134k4wr-eqn69ifsmpb4eswyknlm4gk6
+    │   │       │   ├── dep-graph.bin
+    │   │       │   ├── query-cache.bin
+    │   │       │   └── work-products.bin
+    │   │       └── s-gqgyjx06g8-134k4wr.lock
+    │   ├── libmergefast.d
+    │   ├── libmergefast.dylib
+    │   ├── librust.d
+    │   └── librust.dylib
+    └── release
+        ├── deps
+        │   ├── autocfg-8f6332eb6e071888.d
+        │   ├── cfg_if-08e6cfee5fbcf49d.d
+        │   ├── indoc-c5aaa91b1d730a8e.d
+        │   ├── indoc_impl-f0272537d03ddea3.d
+        │   ├── instant-0f24ae2b38f73c8a.d
+        │   ├── libautocfg-8f6332eb6e071888.rlib
+        │   ├── libautocfg-8f6332eb6e071888.rmeta
+        │   ├── libc-7b87ea6b3458a172.d
+        │   ├── libcfg_if-08e6cfee5fbcf49d.rlib
+        │   ├── libcfg_if-08e6cfee5fbcf49d.rmeta
+        │   ├── libindoc-c5aaa91b1d730a8e.rlib
+        │   ├── libindoc-c5aaa91b1d730a8e.rmeta
+        │   ├── libindoc_impl-f0272537d03ddea3.dylib
+        │   ├── libinstant-0f24ae2b38f73c8a.rlib
+        │   ├── libinstant-0f24ae2b38f73c8a.rmeta
+        │   ├── liblibc-7b87ea6b3458a172.rlib
+        │   ├── liblibc-7b87ea6b3458a172.rmeta
+        │   ├── liblock_api-33f6e0221c0ff4e9.rlib
+        │   ├── liblock_api-33f6e0221c0ff4e9.rmeta
+        │   ├── libonce_cell-79e4aae7c3bc113f.rlib
+        │   ├── libonce_cell-79e4aae7c3bc113f.rmeta
+        │   ├── libparking_lot-573e02c0acea7680.rlib
+        │   ├── libparking_lot-573e02c0acea7680.rmeta
+        │   ├── libparking_lot_core-4bc54e572906c2dd.rlib
+        │   ├── libparking_lot_core-4bc54e572906c2dd.rmeta
+        │   ├── libpaste-e111b6ddad3743d5.rlib
+        │   ├── libpaste-e111b6ddad3743d5.rmeta
+        │   ├── libpaste_impl-9079a098084da015.dylib
+        │   ├── libproc_macro2-bfa2d1a988359d1f.rlib
+        │   ├── libproc_macro2-bfa2d1a988359d1f.rmeta
+        │   ├── libproc_macro_hack-219602fffa8cd166.dylib
+        │   ├── libpyo3-e20c4ef8d82956be.rlib
+        │   ├── libpyo3-e20c4ef8d82956be.rmeta
+        │   ├── libpyo3_build_config-af961a719bde55d9.rlib
+        │   ├── libpyo3_build_config-af961a719bde55d9.rmeta
+        │   ├── libpyo3_macros-fd492ada9e32408c.dylib
+        │   ├── libpyo3_macros_backend-4d9545a3d877604a.rlib
+        │   ├── libpyo3_macros_backend-4d9545a3d877604a.rmeta
+        │   ├── libquote-113594972dbfdf5b.rlib
+        │   ├── libquote-113594972dbfdf5b.rmeta
+        │   ├── librust.dylib
+        │   ├── libscopeguard-c46ce5f9d354db89.rlib
+        │   ├── libscopeguard-c46ce5f9d354db89.rmeta
+        │   ├── libsmallvec-dac409a68beb0eb6.rlib
+        │   ├── libsmallvec-dac409a68beb0eb6.rmeta
+        │   ├── libsyn-615df0188317898c.rlib
+        │   ├── libsyn-615df0188317898c.rmeta
+        │   ├── libunicode_ident-8f6abd8fb876534d.rlib
+        │   ├── libunicode_ident-8f6abd8fb876534d.rmeta
+        │   ├── libunindent-50a5f9836f001b49.rlib
+        │   ├── libunindent-50a5f9836f001b49.rmeta
+        │   ├── libunindent-f2b7fe518f40a966.rlib
+        │   ├── libunindent-f2b7fe518f40a966.rmeta
+        │   ├── lock_api-33f6e0221c0ff4e9.d
+        │   ├── once_cell-79e4aae7c3bc113f.d
+        │   ├── parking_lot-573e02c0acea7680.d
+        │   ├── parking_lot_core-4bc54e572906c2dd.d
+        │   ├── paste-e111b6ddad3743d5.d
+        │   ├── paste_impl-9079a098084da015.d
+        │   ├── proc_macro2-bfa2d1a988359d1f.d
+        │   ├── proc_macro_hack-219602fffa8cd166.d
+        │   ├── pyo3-e20c4ef8d82956be.d
+        │   ├── pyo3_build_config-af961a719bde55d9.d
+        │   ├── pyo3_macros-fd492ada9e32408c.d
+        │   ├── pyo3_macros_backend-4d9545a3d877604a.d
+        │   ├── quote-113594972dbfdf5b.d
+        │   ├── rust.d
+        │   ├── scopeguard-c46ce5f9d354db89.d
+        │   ├── smallvec-dac409a68beb0eb6.d
+        │   ├── syn-615df0188317898c.d
+        │   ├── unicode_ident-8f6abd8fb876534d.d
+        │   ├── unindent-50a5f9836f001b49.d
+        │   └── unindent-f2b7fe518f40a966.d
+        ├── examples
+        ├── incremental
+        ├── librust.d
+        └── librust.dylib
+
+34 directories, 625 files
+
+---
+
+Path: Cargo.toml:
+
+---
+
+[package]
+name = "mergefast"
+version = "0.1.0"
+edition = "2018"
+
+[lib]
+name = "mergefast"
+crate-type = ["cdylib"]
+
+[dependencies.pyo3]
+version = "0.15.0"
+features = ["extension-module"]
+
+---
+
+Path: __init__.py:
+
+---
+
+from mergefast.mergefast import multiply 
+
+---
+
+Path: src/lib.rs:
+
+---
+
+use pyo3::prelude::*;
+use pyo3::Python;
+use pyo3::types::PyList;
+use pyo3::PyResult;
+use pyo3::types::PyFloat;
+use pyo3::types::PyString;
+use pyo3::pyfunction;
+use pyo3::Py;
+use pyo3::PyAny;
+use pyo3::wrap_pyfunction;
+use pyo3::types::PyModule;
+
+pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    v.lt(w)
+}
+
+pub fn float_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_float = v.downcast::<PyFloat>()?.value();
+    let w_float = w.downcast::<PyFloat>()?.value();
+    Ok(v_float < w_float)
+}
+
+pub fn long_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_int = v.extract::<i64>()?;
+    let w_int = w.extract::<i64>()?;
+    Ok(v_int < w_int)
+}
+
+pub fn latin_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_str = v.downcast::<PyString>()?.to_str()?;
+    let w_str = w.downcast::<PyString>()?.to_str()?;
+    Ok(v_str < w_str)
+}
+
+pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn Fn(&PyAny, &PyAny) -> PyResult<bool>) -> PyResult<Py<PyList>> {
+    let n1 = list1.len();
+    let n2 = list2.len();
+    let merged_list = PyList::empty(py);
+
+    let mut i1 = 0;
+    let mut i2 = 0;
+
+    while i1 < n1 || i2 < n2 {
+        let elem1 = if i1 < n1 { list1.get_item(i1).ok() } else { None };
+        let elem2 = if i2 < n2 { list2.get_item(i2).ok() } else { None };
+
+        match (elem1, elem2) {
+            (Some(e1), Some(e2)) => {
+                if compare(e1, e2)? {
+                    merged_list.append(e1)?;
+                    i1 += 1;
+                } else {
+                    merged_list.append(e2)?;
+                    i2 += 1;
+                }
+            },
+            (Some(e1), None) => {
+                merged_list.append(e1)?;
+                i1 += 1;
+            },
+            (None, Some(e2)) => {
+                merged_list.append(e2)?;
+                i2 += 1;
+            },
+            (None, None) => break,
+        }
+    }
+
+    Ok(merged_list.into())
+}
+
+
+#[pyfunction]
+pub fn merge(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &object_compare)
+}
+
+#[pyfunction]
+pub fn merge_latin(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &latin_compare)
+}
+
+#[pyfunction]
+pub fn merge_int(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &long_compare)
+}
+
+#[pyfunction]
+pub fn merge_float(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &float_compare)
+}
+
+// This macro creates the Python module
+#[pymodule]
+pub fn mergefast(py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(merge, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_latin, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_int, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_float, m)?)?;
+    
+    Ok(())
+}
+
+---
+
+Path: src/lib.rs1:
+
+---
+
+use pyo3::prelude::*;
+use pyo3::Python;
+use pyo3::types::PyList;
+use pyo3::PyResult;
+use pyo3::types::PyFloat;
+use pyo3::types::PyString;
+use pyo3::pyfunction;
+use pyo3::Py;
+use pyo3::PyAny;
+use pyo3::wrap_pyfunction;
+use pyo3::types::PyModule;
+use pyo3::pymodule;
+
+pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    v.lt(w)
+}
+
+pub fn float_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_float = v.downcast::<PyFloat>()?.value();
+    let w_float = w.downcast::<PyFloat>()?.value();
+    Ok(v_float < w_float)
+}
+
+pub fn long_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_int = v.extract::<i64>()?;
+    let w_int = w.extract::<i64>()?;
+    Ok(v_int < w_int)
+}
+
+pub fn latin_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let v_str = v.downcast::<PyString>()?.to_str()?;
+    let w_str = w.downcast::<PyString>()?.to_str()?;
+    Ok(v_str < w_str)
+}
+
+pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn Fn(&PyAny, &PyAny) -> PyResult<bool>) -> PyResult<Py<PyList>> {
+    let n1 = list1.len();
+    let n2 = list2.len();
+    let merged_list = PyList::empty(py);
+
+    let mut i1 = 0;
+    let mut i2 = 0;
+
+    while i1 < n1 || i2 < n2 {
+        let elem1 = if i1 < n1 { list1.get_item(i1).ok() } else { None };
+        let elem2 = if i2 < n2 { list2.get_item(i2).ok() } else { None };
+
+        match (elem1, elem2) {
+            (Some(e1), Some(e2)) => {
+                if compare(e1, e2)? {
+                    merged_list.append(e1)?;
+                    i1 += 1;
+                } else {
+                    merged_list.append(e2)?;
+                    i2 += 1;
+                }
+            },
+            (Some(e1), None) => {
+                merged_list.append(e1)?;
+                i1 += 1;
+            },
+            (None, Some(e2)) => {
+                merged_list.append(e2)?;
+                i2 += 1;
+            },
+            (None, None) => break,
+        }
+    }
+
+    Ok(merged_list.into())
+}
+
+
+#[pyfunction]
+pub fn merge(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &object_compare)
+}
+
+#[pyfunction]
+pub fn merge_latin(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &latin_compare)
+}
+
+#[pyfunction]
+pub fn merge_int(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &long_compare)
+}
+
+#[pyfunction]
+pub fn merge_float(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    merge_internal(py, list1, list2, &float_compare)
+}
+
+// This macro creates the Python module
+#[pymodule]
+pub fn core(py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(merge, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_latin, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_int, m)?)?;
+    m.add_function(wrap_pyfunction!(merge_float, m)?)?;
+    
+    Ok(())
+}
+
+---
+
