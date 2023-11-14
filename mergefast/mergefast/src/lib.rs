@@ -17,6 +17,8 @@ use pyo3::PyNativeType;
 // }
 
 // This is dog slow
+// Should be possible to use the Python API to do this
+// https://github.com/search?q=repo%3APyO3%2Fpyo3+PyObject_RichCompareBool&type=code
 pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
     let locals = [("v", v), ("w", w)].into_py_dict(*py);
     let result: bool = py.eval("v < w", None, Some(locals))?.extract()?;
