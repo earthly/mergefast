@@ -8,18 +8,22 @@ clean:
 deps:
     FROM python:3.11-buster
     RUN pip install poetry
+    RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    ENV PATH="/root/.cargo/bin:${PATH}"
 
 build:
     FROM +deps
     WORKDIR /code
-    COPY --dir mergefast tests .
+    COPY --dir mergefast .
     COPY setup.py poetry.lock pyproject.toml README.md MANIFEST.in .
 
     # Three ways to build
 
     # works, but not used in poetry directly
     # creates a sdist for pypi
-    RUN python3 setup.py sdist
+    # RUN python3 setup.py sdist
+    RUN poetry install
+    RUN poetry run python setup.py sdist
 
     # create bdist for pypy, in theory
     # this is not useful, because need to use a manylinux image to make a wheel that works on pypi
@@ -27,7 +31,9 @@ build:
 
     # Create in place build
     # Need to use locally, so there is a .so file to import without installing
-    RUN python setup.py build_ext --inplace
+    RUN poetry run python setup.py build_ext --inplace
+
+    COPY --dir tests .
     SAVE ARTIFACT ./dist AS LOCAL .
 
 test-direct:

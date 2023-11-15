@@ -5,8 +5,23 @@ edition = "2018"
 
 [lib]
 name = "mergefast"
-crate-type = ["cdylib"]
+crate-type = ["cdylib", "rlib"]
 
 [dependencies.pyo3]
 version = "0.15.0"
 features = ["extension-module"]
+
+[profile.release]
+debug = true
+
+[dev-dependencies]
+criterion = "0.3"
+mergefast = { path = "." }
+
+[[bench]]
+name = "merge_benchmark"
+harness = false
+path = "benches/merge_benchmark.rs"
+
+[profile.dev]
+debug = true

@@ -12,7 +12,8 @@ setup(
         RustExtension(
             "mergefast.mergefast",  # Updated module name
             "mergefast/Cargo.toml",  # Adjust path as necessary
-            binding=Binding.PyO3
+            binding=Binding.PyO3,
+            # args=["--release"]
         )
     ],
     include_package_data=True,
