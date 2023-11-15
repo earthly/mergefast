@@ -12,13 +12,13 @@ use pyo3::ffi::{PyObject_RichCompareBool, Py_LT};
 use pyo3::AsPyPointer;
 
 #[inline(always)]
-fn binary_search(py: Python, arr: &PyList, item: &PyAny, start: usize, end: usize) -> PyResult<usize> {
+fn binary_search(arr: &PyList, item: &PyAny, start: usize, end: usize) -> PyResult<usize> {
     let mut low = start;
     let mut high = end;
     while low < high {
         let mid = (low + high) / 2;
         let mid_value = arr.get_item(mid)?;
-        if object_compare(mid_value, item, &py)? {
+        if object_compare(mid_value, item)? {
             low = mid + 1;
         } else {
             high = mid;
@@ -28,12 +28,12 @@ fn binary_search(py: Python, arr: &PyList, item: &PyAny, start: usize, end: usiz
 }
 
 #[inline(always)]
-fn exponential_search(py: Python, arr: &PyList, item: &PyAny, start: usize) -> PyResult<usize> {
+fn exponential_search(arr: &PyList, item: &PyAny, start: usize) -> PyResult<usize> {
     let mut bound = 1;
-    while start + bound < arr.len() && object_compare(arr.get_item(start + bound)?, item, &py)? {
+    while start + bound < arr.len() && object_compare(arr.get_item(start + bound)?, item)? {
         bound *= 2;
     }
-    binary_search(py, arr, item, start, std::cmp::min(start + bound, arr.len()))
+    binary_search(arr, item, start, std::cmp::min(start + bound, arr.len()))
 }
 
 #[inline(always)]
@@ -46,7 +46,7 @@ pub fn merge_with_exponential_search(py: Python, list1: &PyList, list2: &PyList)
     let (mut gallop_count_list1, mut gallop_count_list2) = (0, 0);
 
     while i < list1.len() && j < list2.len() {
-        if object_compare(list1.get_item(i)?, list2.get_item(j)?, &py)? {
+        if object_compare(list1.get_item(i)?, list2.get_item(j)?)? {
             merged_pylist.set_item(index, list1.get_item(i)?)?;
             i += 1;
             gallop_count_list1 += 1;
@@ -60,7 +60,7 @@ pub fn merge_with_exponential_search(py: Python, list1: &PyList, list2: &PyList)
         index += 1;
 
         if gallop_count_list1 == 3 {
-            let pos = exponential_search(py, list1, list2.get_item(j)?, i)?;
+            let pos = exponential_search(list1, list2.get_item(j)?, i)?;
             // println!("Gallop found position {} in list1", pos); 
             while i < pos {
                 merged_pylist.set_item(index, list1.get_item(i)?)?;
@@ -71,7 +71,7 @@ pub fn merge_with_exponential_search(py: Python, list1: &PyList, list2: &PyList)
         }
 
         if gallop_count_list2 == 3 {
-            let pos = exponential_search(py, list2, list1.get_item(i)?, j)?;
+            let pos = exponential_search(list2, list1.get_item(i)?, j)?;
             // println!("Gallop found position {} in list1", pos); 
             while j < pos {
                 merged_pylist.set_item(index, list2.get_item(j)?)?;
@@ -110,7 +110,7 @@ pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py
     while iter1.peek().is_some() || iter2.peek().is_some() {
         match (iter1.peek(), iter2.peek()) {
             (Some(e1), Some(e2)) => {
-                if object_compare(e1, e2, &py)? {
+                if object_compare(e1, e2)? {
                     merged_pylist.set_item(index, *e1)?;
                     iter1.next();
                 } else {
@@ -135,12 +135,13 @@ pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py
 }
 
 #[inline(always)]
-pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
+pub fn object_compare(v: &PyAny, w: &PyAny) -> PyResult<bool> {
+    let py = v.py();
     unsafe {
         let result = PyObject_RichCompareBool(v.as_ptr(), w.as_ptr(), Py_LT);
         if result < 0 {
             // Handle error: when PyObject_RichCompareBool returns -1, it indicates an error.
-            Err(PyErr::fetch(*py))
+            Err(PyErr::fetch(py))
         } else {
             Ok(result == 1)
         }
@@ -149,6 +150,7 @@ pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
 
 #[pyfunction]
 pub fn merge(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    pyo3::prepare_freethreaded_python();
     merge_with_exponential_search(py, list1, list2)
 }
 
