@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import textwrap
 import mergefast
 
-def merge_latin(a,b):
-   m1 = mergefast.merge_latin(a, b)
+def merge_int(a,b):
+   m1 = mergefast.merge_int(a, b)
 
 def merge_simple(a,b):
    m1 = mergefast.merge(a, b)
@@ -19,12 +19,12 @@ step = 100
 methods = [
     "sort(a,b)",
     "merge_simple(a,b)",
-    "merge_latin(a,b)"
+    "merge_int(a,b)"
 ]
 labels = [
     "list(a+b).sort()",
     "mergefast.merge(a,b) #general",
-    "mergefast.merge_latin(a,b) #specialized"
+    "mergefast.merge_int(a,b) #specialized"
 ]
 
 x = list(range(0, num_data_points * step, step))
@@ -34,10 +34,10 @@ for i in x:
     list_b = random.sample(range(1, 100000000), int(i/4)) + [0.1]
     list_a.sort()
     list_b.sort()
-    list_a = [str(x) for x in list_a]
-    list_b = [str(x) for x in list_b]
+    # list_a = [str(x) for x in list_a]
+    # list_b = [str(x) for x in list_b]
     setup = textwrap.dedent(f"""\
-        from __main__ import merge_latin, merge_simple, sort
+        from __main__ import merge_int, merge_simple, sort
         a = {list_a}; b = {list_b}
         """)
     for method_index, method in enumerate(methods):

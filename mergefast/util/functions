@@ -12,6 +12,10 @@ trace(){
     sudo dtrace -c "python tests/perf.py" -o out.stacks -n 'profile-997 /pid == $target/ { @[ustack(100)] = count(); }'
 }
 
+trace1(){
+    sudo dtrace -c "python tests/perf.py" -o out.stacks -n 'profile-503 /pid == $target/ { @[ustack(200)] = count(); }'
+}
+
 flamegraph(){
     cat out.stacks | /Users/adam/sandbox/FlameGraph/stackcollapse.pl | /Users/adam/sandbox/FlameGraph/flamegraph.pl > flamegraph.svg
 }

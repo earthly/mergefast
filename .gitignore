@@ -9,3 +9,5 @@ __pycache__/
 .DS_Store
 target/*
 mergefast/mergefast/target/*
+out.stacks
+flamegraph.svg

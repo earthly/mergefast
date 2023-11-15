@@ -14,11 +14,11 @@ def sort_test():
    m2 = a + b
    m2.sort()
 
-sort_time = timeit.timeit("sort_test()", setup="from __main__ import sort_test", number=1000)
-merge_time = timeit.timeit("merge_test()", setup="from __main__ import merge_test",number=1000)
-# merge_int_time = timeit.timeit("merge_int_test()", setup="from __main__ import merge_int_test",number=1000)
+sort_time = timeit.timeit("sort_test()", setup="from __main__ import sort_test", number=100000)
+merge_time = timeit.timeit("merge_test()", setup="from __main__ import merge_test",number=100000)
+merge_int_time = timeit.timeit("merge_int_test()", setup="from __main__ import merge_int_test",number=100000)
 
 
 print(f'timsort took {sort_time} seconds')
-# print(f'merge_int took {merge_int_time} seconds')
+print(f'merge_int took {merge_int_time} seconds')
 print(f'merge took {merge_time} seconds')

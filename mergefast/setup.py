@@ -13,7 +13,7 @@ setup(
             "mergefast.mergefast",  # Updated module name
             "mergefast/Cargo.toml",  # Adjust path as necessary
             binding=Binding.PyO3,
-            # args=["--release"]
+            args=["--release"]
         )
     ],
     include_package_data=True,

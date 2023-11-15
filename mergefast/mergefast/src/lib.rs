@@ -2,8 +2,6 @@ use pyo3::prelude::*;
 use pyo3::Python;
 use pyo3::types::PyList;
 use pyo3::PyResult;
-use pyo3::types::PyFloat;
-use pyo3::types::PyString;
 use pyo3::pyfunction;
 use pyo3::Py;
 use pyo3::PyAny;
@@ -12,6 +10,129 @@ use pyo3::types::PyModule;
 
 use pyo3::ffi::{PyObject_RichCompareBool, Py_LT};
 use pyo3::AsPyPointer;
+
+#[inline(always)]
+fn binary_search(py: Python, arr: &PyList, item: &PyAny, start: usize, end: usize) -> PyResult<usize> {
+    let mut low = start;
+    let mut high = end;
+    while low < high {
+        let mid = (low + high) / 2;
+        let mid_value = arr.get_item(mid)?;
+        if object_compare(mid_value, item, &py)? {
+            low = mid + 1;
+        } else {
+            high = mid;
+        }
+    }
+    Ok(low)
+}
+
+#[inline(always)]
+fn exponential_search(py: Python, arr: &PyList, item: &PyAny, start: usize) -> PyResult<usize> {
+    let mut bound = 1;
+    while start + bound < arr.len() && object_compare(arr.get_item(start + bound)?, item, &py)? {
+        bound *= 2;
+    }
+    binary_search(py, arr, item, start, std::cmp::min(start + bound, arr.len()))
+}
+
+#[inline(always)]
+pub fn merge_with_exponential_search(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    let total_size = list1.len() + list2.len();
+    let merged_list: Vec<Py<PyAny>> = vec![py.None(); total_size];
+    let merged_pylist = PyList::new(py, &merged_list);
+
+    let (mut i, mut j, mut index) = (0, 0, 0);
+    let (mut gallop_count_list1, mut gallop_count_list2) = (0, 0);
+
+    while i < list1.len() && j < list2.len() {
+        if object_compare(list1.get_item(i)?, list2.get_item(j)?, &py)? {
+            merged_pylist.set_item(index, list1.get_item(i)?)?;
+            i += 1;
+            gallop_count_list1 += 1;
+            gallop_count_list2 = 0;
+        } else {
+            merged_pylist.set_item(index, list2.get_item(j)?)?;
+            j += 1;
+            gallop_count_list2 += 1;
+            gallop_count_list1 = 0;
+        }
+        index += 1;
+
+        if gallop_count_list1 == 3 {
+            let pos = exponential_search(py, list1, list2.get_item(j)?, i)?;
+            // println!("Gallop found position {} in list1", pos); 
+            while i < pos {
+                merged_pylist.set_item(index, list1.get_item(i)?)?;
+                i += 1;
+                index += 1;
+            }
+            gallop_count_list1 = 0;
+        }
+
+        if gallop_count_list2 == 3 {
+            let pos = exponential_search(py, list2, list1.get_item(i)?, j)?;
+            // println!("Gallop found position {} in list1", pos); 
+            while j < pos {
+                merged_pylist.set_item(index, list2.get_item(j)?)?;
+                j += 1;
+                index += 1;
+            }
+            gallop_count_list2 = 0;
+        }
+    }
+
+    while i < list1.len() {
+        merged_pylist.set_item(index, list1.get_item(i)?)?;
+        i += 1;
+        index += 1;
+    }
+
+    while j < list2.len() {
+        merged_pylist.set_item(index, list2.get_item(j)?)?;
+        j += 1;
+        index += 1;
+    }
+
+    Ok(merged_pylist.into())
+}
+
+#[inline(always)]
+pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
+    let total_size = list1.len() + list2.len();
+    let merged_list: Vec<Py<PyAny>> = vec![py.None(); total_size];
+    let merged_pylist = PyList::new(py, &merged_list);
+
+    let mut iter1 = list1.iter().peekable();
+    let mut iter2 = list2.iter().peekable();
+
+    let mut index = 0;
+    while iter1.peek().is_some() || iter2.peek().is_some() {
+        match (iter1.peek(), iter2.peek()) {
+            (Some(e1), Some(e2)) => {
+                if object_compare(e1, e2, &py)? {
+                    merged_pylist.set_item(index, *e1)?;
+                    iter1.next();
+                } else {
+                    merged_pylist.set_item(index, *e2)?;
+                    iter2.next();
+                }
+            },
+            (Some(e1), None) => {
+                merged_pylist.set_item(index, *e1)?;
+                iter1.next();
+            },
+            (None, Some(e2)) => {
+                merged_pylist.set_item(index, *e2)?;
+                iter2.next();
+            },
+            (None, None) => break,
+        }
+        index += 1;
+    }
+
+    Ok(merged_pylist.into())
+}
 
 #[inline(always)]
 pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
@@ -26,84 +147,25 @@ pub fn object_compare(v: &PyAny, w: &PyAny, py: &Python) -> PyResult<bool> {
     }
 }
 
-#[inline(always)]
-pub fn float_compare(v: &PyAny, w: &PyAny, _py: &Python) -> PyResult<bool> {
-    let v_float = v.downcast::<PyFloat>()?.value();
-    let w_float = w.downcast::<PyFloat>()?.value();
-    Ok(v_float < w_float)
-}
-
-#[inline(always)]
-pub fn long_compare(v: &PyAny, w: &PyAny, _py: &Python) -> PyResult<bool> {
-    let v_int = v.extract::<i64>()?;
-    let w_int = w.extract::<i64>()?;
-    Ok(v_int < w_int)
-}
-
-#[inline(always)]
-pub fn latin_compare(v: &PyAny, w: &PyAny, _py: &Python) -> PyResult<bool> {
-    let v_str = v.downcast::<PyString>()?.to_str()?;
-    let w_str = w.downcast::<PyString>()?.to_str()?;
-    Ok(v_str < w_str)
-}
-
-#[inline(always)]
-pub fn merge_internal(py: Python, list1: &PyList, list2: &PyList, compare: &dyn Fn(&PyAny, &PyAny, &Python) -> PyResult<bool>) -> PyResult<Py<PyList>> {
-    let n1 = list1.len();
-    let n2 = list2.len();
-    let merged_list = PyList::empty(py);
-
-    let mut i1 = 0;
-    let mut i2 = 0;
-
-    while i1 < n1 || i2 < n2 {
-        let elem1 = if i1 < n1 { list1.get_item(i1).ok() } else { None };
-        let elem2 = if i2 < n2 { list2.get_item(i2).ok() } else { None };
-
-        match (elem1, elem2) {
-            (Some(e1), Some(e2)) => {
-                if compare(e1, e2, &py)? {
-                    merged_list.append(e1)?;
-                    i1 += 1;
-                } else {
-                    merged_list.append(e2)?;
-                    i2 += 1;
-                }
-            },
-            (Some(e1), None) => {
-                merged_list.append(e1)?;
-                i1 += 1;
-            },
-            (None, Some(e2)) => {
-                merged_list.append(e2)?;
-                i2 += 1;
-            },
-            (None, None) => break,
-        }
-    }
-
-    Ok(merged_list.into())
-}
-
-
 #[pyfunction]
 pub fn merge(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
-    merge_internal(py, list1, list2, &object_compare)
+    merge_with_exponential_search(py, list1, list2)
 }
+
 
 #[pyfunction]
 pub fn merge_latin(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
-    merge_internal(py, list1, list2, &latin_compare)
+    merge_with_exponential_search(py, list1, list2)
 }
 
 #[pyfunction]
 pub fn merge_int(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
-    merge_internal(py, list1, list2, &long_compare)
+    merge_with_exponential_search(py, list1, list2)
 }
 
 #[pyfunction]
 pub fn merge_float(py: Python, list1: &PyList, list2: &PyList) -> PyResult<Py<PyList>> {
-    merge_internal(py, list1, list2, &float_compare)
+    merge_with_exponential_search(py, list1, list2)
 }
 
 // This macro creates the Python module
